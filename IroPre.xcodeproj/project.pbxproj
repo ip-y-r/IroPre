@@ -469,6 +469,9 @@
 				64744C698C86EA4C963B3CDA /* TutorialViewModel.swift in Sources */,
 				AFDDDC674584DEF50EBFBE35 /* UserSettings.swift in Sources */,
 				0FACBF69A1BD43E425DD1DEC /* View+Extensions.swift in Sources */,
+				BB11223344556677889900BB /* SplashView.swift in Sources */,
+				DD11223344556677889900DD /* HapticsManager.swift in Sources */,
+				FF11223344556677889900FF /* SoundManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,9 +484,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-				BB11223344556677889900BB /* SplashView.swift in Sources */,
-				DD11223344556677889900DD /* HapticsManager.swift in Sources */,
-				FF11223344556677889900FF /* SoundManager.swift in Sources */,
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
