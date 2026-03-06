@@ -33,6 +33,7 @@ struct GameView: View {
                         BoardView(
                             gameState: gameState,
                             isDarkMode: settings.isDarkMode,
+                            displayMode: settings.accessibilityMode,
                             selectedPosition: viewModel.selectedCellPosition,
                             onCellTap: { row, col in
                                 HapticsManager.impact(.medium)

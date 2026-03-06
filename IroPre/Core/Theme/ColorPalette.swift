@@ -11,6 +11,22 @@ struct PuzzleColor: Sendable {
     func color(isDarkMode: Bool) -> Color {
         isDarkMode ? dark : light
     }
+
+    /// VoiceOver 用の日本語色名
+    var localizedName: String {
+        switch nameKey {
+        case "color.red":    return "赤"
+        case "color.blue":   return "青"
+        case "color.green":  return "緑"
+        case "color.yellow": return "黄"
+        case "color.purple": return "紫"
+        case "color.orange": return "オレンジ"
+        case "color.pink":   return "ピンク"
+        case "color.cyan":   return "シアン"
+        case "color.lime":   return "黄緑"
+        default:             return nameKey
+        }
+    }
 }
 
 /// カラーパレット管理

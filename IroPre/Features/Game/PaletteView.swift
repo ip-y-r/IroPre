@@ -57,6 +57,9 @@ private struct PaletteColorButton: View {
         }
         .frame(maxWidth: .infinity)
         .aspectRatio(1, contentMode: .fit)
+        .accessibilityLabel(puzzleColor.localizedName)
+        .accessibilityHint(isSelected ? "選択中。もう一度タップで解除" : "タップして色を選択")
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 }
 
