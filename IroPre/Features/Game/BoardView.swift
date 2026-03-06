@@ -72,12 +72,13 @@ struct CellView: View {
                     .fill(ColorPalette.accent.opacity(0.15))
             }
 
-            // 色
+            // 色（配置時スプリングアニメーション）
             if !cell.isEmpty {
                 RoundedRectangle(cornerRadius: 6)
                     .fill(colorForCell)
                     .padding(4)
                     .shadow(color: colorForCell.opacity(0.4), radius: 3, x: 0, y: 2)
+                    .transition(.scale(scale: 0.3, anchor: .center).combined(with: .opacity))
             }
 
             // エラーハイライト
@@ -93,6 +94,13 @@ struct CellView: View {
                     .stroke(ColorPalette.accent, lineWidth: 1.5)
             }
         }
+        .animation(
+            .spring(
+                response: Constants.Animation.colorPlaceResponse,
+                dampingFraction: Constants.Animation.colorPlaceDamping
+            ),
+            value: cell.colorIndex
+        )
     }
 
     private var backgroundColor: Color {

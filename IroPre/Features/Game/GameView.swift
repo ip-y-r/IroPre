@@ -34,7 +34,10 @@ struct GameView: View {
                             gameState: gameState,
                             isDarkMode: settings.isDarkMode,
                             selectedPosition: viewModel.selectedCellPosition,
-                            onCellTap: { row, col in viewModel.tapCell(row: row, col: col) }
+                            onCellTap: { row, col in
+                                HapticsManager.impact(.medium)
+                                viewModel.tapCell(row: row, col: col)
+                            }
                         )
                         .padding(.horizontal, 16)
                     } else {
@@ -60,7 +63,10 @@ struct GameView: View {
                         gridSize: gridSize,
                         selectedColorIndex: gameState.selectedColorIndex,
                         isDarkMode: settings.isDarkMode,
-                        onColorSelected: { index in viewModel.selectColor(index) }
+                        onColorSelected: { index in
+                            HapticsManager.selection()
+                            viewModel.selectColor(index)
+                        }
                     )
                     .padding(.horizontal, 16)
                     .padding(.bottom, 24)
@@ -96,6 +102,18 @@ struct GameView: View {
         }
         .onDisappear {
             viewModel.stopTimer()
+        }
+        .onChange(of: viewModel.gameState?.phase) { _, newPhase in
+            if newPhase == .completed {
+                HapticsManager.notification(.success)
+                SoundManager.shared.play(.clear)
+            }
+        }
+        .onChange(of: viewModel.errorPositions) { _, newPositions in
+            if !newPositions.isEmpty {
+                HapticsManager.notification(.error)
+                SoundManager.shared.play(.error)
+            }
         }
     }
 }
@@ -204,6 +222,11 @@ private struct GameClearOverlay: View {
             Color.black.opacity(0.6)
                 .ignoresSafeArea()
 
+            // コンフェッティ
+            ConfettiView()
+                .ignoresSafeArea()
+                .allowsHitTesting(false)
+
             VStack(spacing: 28) {
                 Text("クリア！")
                     .font(FontManager.title())
@@ -259,6 +282,66 @@ private struct GameClearOverlay: View {
         let minutes = Int(time) / 60
         let seconds = Int(time) % 60
         return String(format: "%02d:%02d", minutes, seconds)
+    }
+}
+
+// MARK: - ConfettiView
+
+private struct ConfettiView: View {
+    private let colors: [Color] = ColorPalette.puzzleColors.map { $0.light }
+    @State private var particles: [ConfettiParticleData] = []
+
+    var body: some View {
+        GeometryReader { geo in
+            ForEach(particles) { particle in
+                ConfettiParticle(color: particle.color, delay: particle.delay, maxY: geo.size.height + 40)
+                    .position(x: particle.x * geo.size.width, y: -20)
+            }
+        }
+        .onAppear {
+            particles = (0..<40).map { i in
+                ConfettiParticleData(
+                    x: CGFloat.random(in: 0.05...0.95),
+                    color: colors[i % colors.count],
+                    delay: Double(i) * 0.04
+                )
+            }
+        }
+    }
+}
+
+private struct ConfettiParticleData: Identifiable {
+    let id = UUID()
+    let x: CGFloat
+    let color: Color
+    let delay: Double
+}
+
+private struct ConfettiParticle: View {
+    let color: Color
+    let delay: Double
+    let maxY: CGFloat
+
+    @State private var y: CGFloat = 0
+    @State private var opacity: Double = 1.0
+    @State private var rotation: Double = 0
+
+    var body: some View {
+        RoundedRectangle(cornerRadius: 2)
+            .fill(color)
+            .frame(width: 8, height: 10)
+            .rotationEffect(.degrees(rotation))
+            .offset(y: y)
+            .opacity(opacity)
+            .onAppear {
+                withAnimation(.easeIn(duration: 1.8).delay(delay)) {
+                    y = maxY
+                    rotation = Double.random(in: 180...720)
+                }
+                withAnimation(.easeIn(duration: 0.4).delay(delay + 1.4)) {
+                    opacity = 0
+                }
+            }
     }
 }
 
