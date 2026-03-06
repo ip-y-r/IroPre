@@ -95,10 +95,10 @@ private struct AchievementCardView: View {
 
             // テキスト
             VStack(alignment: .leading, spacing: 3) {
-                Text(achievement.titleKey)
+                Text(achievement.localizedTitle)
                     .font(.system(size: 14, weight: .bold))
                     .foregroundStyle(ColorPalette.primaryTextColor(isDark: isDark))
-                Text(achievement.descriptionKey)
+                Text(achievement.localizedDescription)
                     .font(.system(size: 11))
                     .foregroundStyle(ColorPalette.secondaryTextColor(isDark: isDark))
 
