@@ -49,6 +49,9 @@
 		EB707C45B97789C0BCDCA6E2 /* AchievementsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4583AD37DD497742033F00D /* AchievementsViewModel.swift */; };
 		EFE8E63D7E2998D6177E0309 /* PaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531BFC910409E6DEDCED1E7F /* PaletteView.swift */; };
 		FC430B5479969F86CE965BFE /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D147F194AC53A3A3549FB7 /* GameViewModel.swift */; };
+		BB11223344556677889900BB /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900AA /* SplashView.swift */; };
+		DD11223344556677889900DD /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC11223344556677889900CC /* HapticsManager.swift */; };
+		FF11223344556677889900FF /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11223344556677889900EE /* SoundManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +110,9 @@
 		FCD228BBFC56DC0CAD99A795 /* GameRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRepository.swift; sourceTree = "<group>"; };
 		FCF26098B3A3ED41A6BA9082 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		FD65A3F1207156B33E185C3E /* AchievementRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementRecord.swift; sourceTree = "<group>"; };
+		AA11223344556677889900AA /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		CC11223344556677889900CC /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
+		EE11223344556677889900EE /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -123,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				5ED9B290DA18511D97397681 /* ContentView.swift */,
+				AA11223344556677889900AA /* SplashView.swift */,
 				920F14666D46C59A5B096E01 /* IroPreApp.swift */,
 			);
 			path = App;
@@ -177,6 +184,8 @@
 			isa = PBXGroup;
 			children = (
 				6CFB2906B83EFB7B8226DA22 /* Constants.swift */,
+				CC11223344556677889900CC /* HapticsManager.swift */,
+				EE11223344556677889900EE /* SoundManager.swift */,
 				5808B1F87428A2979B7D39C4 /* Extensions */,
 			);
 			path = Utilities;
@@ -472,6 +481,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+				BB11223344556677889900BB /* SplashView.swift in Sources */,
+				DD11223344556677889900DD /* HapticsManager.swift in Sources */,
+				FF11223344556677889900FF /* SoundManager.swift in Sources */,
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
