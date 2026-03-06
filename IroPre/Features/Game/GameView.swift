@@ -36,6 +36,7 @@ struct GameView: View {
                             selectedPosition: viewModel.selectedCellPosition,
                             onCellTap: { row, col in
                                 HapticsManager.impact(.medium)
+                                SoundManager.shared.play(.place)
                                 viewModel.tapCell(row: row, col: col)
                             }
                         )

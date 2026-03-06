@@ -104,6 +104,7 @@ final class GameViewModel {
         guard let pos = selectedCellPosition else { return }
         gameState?.eraseCell(row: pos.row, col: pos.col)
         errorPositions.removeAll()
+        SoundManager.shared.play(.erase)
     }
 
     @MainActor
@@ -116,6 +117,7 @@ final class GameViewModel {
         case let .cellHint(row, col, colorIndex):
             state.cells[row][col].colorIndex = colorIndex
             state.hintsUsed += 1
+            SoundManager.shared.play(.hint)
             checkCompletion()
         case .alreadyCorrect, .limitReached:
             break
