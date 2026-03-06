@@ -37,7 +37,6 @@ const Icons = {
   confetti: (p) => <Icon {...p}><path d="M5.8 11.3L2 22l10.7-3.79" /><path d="M4 3h.01" /><path d="M22 8h.01" /><path d="M15 2h.01" /><path d="M22 20h.01" /><path d="M22 2l-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10" /><path d="M22 13l-1.34-.45" /><path d="M6 12l-1.34-.45" /></Icon>,
 };
 
-// Gradient icon wrapper for branded elements
 const BrandIcon = ({ icon: IconComp, size = 24, gradient = ["#4A90D9", "#6B5CE7"] }) => (
   <div style={{ width: size, height: size, display: "flex", alignItems: "center", justifyContent: "center" }}>
     <IconComp size={size} color={gradient[0]} />
@@ -86,6 +85,7 @@ export default function IroPreMockup() {
   const [accessMode, setAccessMode] = useState("color");
   const [tutorialStep, setTutorialStep] = useState(0);
   const [splashPulse, setSplashPulse] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => { const t = setInterval(() => setSplashPulse(p => !p), 1200); return () => clearInterval(t); }, []);
 
@@ -276,21 +276,56 @@ export default function IroPreMockup() {
   /* ═══════ HOME ═══════ */
   const renderHome = () => (
     <PhoneFrame>
-      <div style={{ textAlign:"center", paddingTop:40 }}>
-        <div style={{ margin:"0 auto 16px" }}><AppLogo size={100} darkMode={darkMode} /></div>
+      <div style={{ textAlign:"center", paddingTop:24 }}>
+        <div style={{ margin:"0 auto 10px" }}><AppLogo size={88} darkMode={darkMode} /></div>
         <h1 style={{ fontSize:28, fontWeight:800, color:textPrimary, margin:"0 0 4px", letterSpacing:-0.5 }}>IroPre</h1>
-        <p style={{ fontSize:13, color:textSecondary, margin:"0 0 36px" }}>色で解く、新しい数独体験</p>
-        {[{label:"ゲームスタート", gradient:"linear-gradient(135deg, #4A90D9, #6B5CE7)", IconC:Icons.play}, {label:"レベルを選ぶ", gradient:"linear-gradient(135deg, #27AE60, #2ECC71)", IconC:Icons.levels}, {label:"実績", gradient:"linear-gradient(135deg, #F1C40F, #F39C12)", IconC:Icons.trophy}].map((btn,i) => (
-          <div key={i} style={{ background:btn.gradient, borderRadius:16, padding:"16px 24px", marginBottom:12, display:"flex", alignItems:"center", gap:12, cursor:"pointer", boxShadow:"0 4px 16px rgba(0,0,0,0.15), inset 0 1px 1px rgba(255,255,255,0.2)" }}>
-            <btn.IconC size={22} color="#FFF" />
-            <span style={{ color:"#FFF", fontSize:16, fontWeight:700, textShadow:"0 1px 2px rgba(0,0,0,0.2)" }}>{btn.label}</span>
+        <p style={{ fontSize:13, color:textSecondary, margin:"0 0 16px" }}>色で解く、新しい数独体験</p>
+
+        {/* 続きから / 前回のゲームカード */}
+        <div style={{ borderRadius:16, padding:"14px 16px", marginBottom:12, display:"flex", alignItems:"center", gap:14, textAlign:"left", background:darkMode?"linear-gradient(145deg, #22223A, #1A1A2E)":"linear-gradient(145deg, #FFF, #F8F9FF)", boxShadow:"0 4px 16px rgba(0,0,0,0.08)" }}>
+          {/* ミニカラーグリッド */}
+          <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:3, width:52, height:52, flexShrink:0, padding:5, background:darkMode?"#16162B":"#F0F0F7", borderRadius:12 }}>
+            {colors.slice(0,9).map((c,i) => (
+              <div key={i} style={{ borderRadius:3, background:c.hex, opacity:i<5?1:0.3 }} />
+            ))}
+          </div>
+          <div style={{ flex:1, minWidth:0 }}>
+            <div style={{ fontSize:10, color:textSecondary, fontWeight:600, textTransform:"uppercase", letterSpacing:0.5 }}>前回の続き</div>
+            <div style={{ fontSize:15, fontWeight:700, color:textPrimary, marginTop:2 }}>Lv.12 — 6×6</div>
+            <div style={{ width:"100%", height:5, borderRadius:3, background:darkMode?"#333":"#EEE", marginTop:6 }}>
+              <div style={{ width:"44%", height:"100%", borderRadius:3, background:"linear-gradient(90deg, #4A90D9, #6B5CE7)" }} />
+            </div>
+            <div style={{ fontSize:10, color:textSecondary, marginTop:3 }}>進行中... 4/9 マス</div>
+          </div>
+          <div style={{ width:36, height:36, borderRadius:10, background:"linear-gradient(135deg, #4A90D9, #6B5CE7)", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 3px 10px rgba(74,144,217,0.4)", flexShrink:0, cursor:"pointer" }}>
+            <Icons.play size={14} color="#FFF" />
+          </div>
+        </div>
+
+        {/* スタッツ行 */}
+        <div style={{ display:"flex", gap:8, marginBottom:14 }}>
+          {[{val:"42", label:"クリア", color:colors[2].hex},{val:"7", label:"連続日", color:colors[0].hex},{val:"00:34", label:"ベスト", color:colors[1].hex}].map((s,i) => (
+            <div key={i} style={{ flex:1, padding:"10px 8px", borderRadius:12, background:darkMode?"linear-gradient(145deg, #22223A, #1A1A2E)":"linear-gradient(145deg, #FFF, #F0F0F7)", boxShadow:"0 2px 8px rgba(0,0,0,0.06)", textAlign:"center" }}>
+              <div style={{ fontSize:18, fontWeight:800, color:s.color }}>{s.val}</div>
+              <div style={{ fontSize:10, color:textSecondary }}>{s.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* メインアクション */}
+        {[{label:"ゲームスタート", gradient:"linear-gradient(135deg, #4A90D9, #6B5CE7)", IconC:Icons.play},{label:"レベルを選ぶ", gradient:"linear-gradient(135deg, #27AE60, #2ECC71)", IconC:Icons.levels},{label:"実績", gradient:"linear-gradient(135deg, #F1C40F, #F39C12)", IconC:Icons.trophy}].map((btn,i) => (
+          <div key={i} style={{ background:btn.gradient, borderRadius:16, padding:"14px 24px", marginBottom:10, display:"flex", alignItems:"center", gap:12, cursor:"pointer", boxShadow:"0 4px 16px rgba(0,0,0,0.15), inset 0 1px 1px rgba(255,255,255,0.2)" }}>
+            <btn.IconC size={20} color="#FFF" />
+            <span style={{ color:"#FFF", fontSize:15, fontWeight:700, textShadow:"0 1px 2px rgba(0,0,0,0.2)" }}>{btn.label}</span>
           </div>
         ))}
-        <div style={{ marginTop:16, display:"flex", justifyContent:"center", gap:24 }}>
-          {[{IconC:Icons.settings, label:"設定"}, {IconC:Icons.help, label:"遊び方"}].map((item,i) => (
+
+        {/* サブアクション */}
+        <div style={{ marginTop:12, display:"flex", justifyContent:"center", gap:24 }}>
+          {[{IconC:Icons.settings, label:"設定"},{IconC:Icons.help, label:"遊び方"}].map((item,i) => (
             <div key={i} style={{ textAlign:"center", cursor:"pointer" }}>
-              <div style={{ width:48, height:48, borderRadius:16, background:darkMode?"linear-gradient(145deg, #22223A, #1A1A2E)":"linear-gradient(145deg, #FFF, #F0F0F7)", boxShadow:"0 3px 8px rgba(0,0,0,0.1)", display:"flex", alignItems:"center", justifyContent:"center", margin:"0 auto 4px" }}>
-                <item.IconC size={22} color={iconColor} />
+              <div style={{ width:44, height:44, borderRadius:14, background:darkMode?"linear-gradient(145deg, #22223A, #1A1A2E)":"linear-gradient(145deg, #FFF, #F0F0F7)", boxShadow:"0 3px 8px rgba(0,0,0,0.1)", display:"flex", alignItems:"center", justifyContent:"center", margin:"0 auto 4px" }}>
+                <item.IconC size={20} color={iconColor} />
               </div>
               <span style={{ fontSize:11, color:textSecondary }}>{item.label}</span>
             </div>
@@ -302,29 +337,81 @@ export default function IroPreMockup() {
 
   /* ═══════ LEVEL SELECT ═══════ */
   const renderLevelSelect = () => {
-    const levels = Array.from({length:20}, (_,i) => ({ num:i+1, cleared:i<7, stars:i<7?(i<3?3:i<5?2:1):0, locked:i>9 }));
+    const totalCleared = 42;
+    const totalLevels = 100;
+    const diffGroups = [
+      { name:"初級", color:"#27AE60", from:1, to:10 },
+      { name:"中級", color:"#F1C40F", from:11, to:30 },
+      { name:"上級", color:"#E67E22", from:31, to:60 },
+      { name:"エキスパート", color:"#9B59B6", from:61, to:100 },
+    ];
+    const levelData = (from, to) => Array.from({length: Math.min(to - from + 1, 10)}, (_, i) => {
+      const n = from + i;
+      const cleared = n <= 7;
+      const stars = cleared ? (n <= 3 ? 3 : n <= 5 ? 2 : 1) : 0;
+      const locked = n > 10;
+      return { num: n, cleared, stars, locked };
+    });
+
     return (
       <PhoneFrame>
         <div style={{ paddingTop:8 }}>
-          <div style={{ display:"flex", alignItems:"center", marginBottom:16 }}>
+          {/* ヘッダー */}
+          <div style={{ display:"flex", alignItems:"center", marginBottom:14 }}>
             <div style={{ cursor:"pointer" }}><Icons.back size={22} color={textPrimary} /></div>
             <h2 style={{ flex:1, textAlign:"center", fontSize:18, fontWeight:700, color:textPrimary, margin:0 }}>レベル選択</h2>
             <span style={{ width:22 }} />
           </div>
-          <div style={{ display:"flex", gap:6, marginBottom:16, background:darkMode?"#1A1A2E":"#F0F0F7", borderRadius:12, padding:4 }}>
+
+          {/* 盤面サイズタブ */}
+          <div style={{ display:"flex", gap:6, marginBottom:14, background:darkMode?"#1A1A2E":"#F0F0F7", borderRadius:12, padding:4 }}>
             {["4×4","6×6","9×9"].map((s,i) => (
               <div key={i} style={{ flex:1, padding:"8px 0", textAlign:"center", borderRadius:10, fontSize:13, fontWeight:600, cursor:"pointer", background:i===0?"linear-gradient(135deg, #4A90D9, #6B5CE7)":"transparent", color:i===0?"#FFF":textSecondary, boxShadow:i===0?"0 2px 8px rgba(74,144,217,0.4)":"none" }}>{s}</div>
             ))}
           </div>
-          <div style={{ display:"grid", gridTemplateColumns:"repeat(4, 1fr)", gap:10 }}>
-            {levels.map(lv => (
-              <div key={lv.num} style={{ aspectRatio:"1", borderRadius:14, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", cursor:lv.locked?"default":"pointer", opacity:lv.locked?0.4:1, background:lv.cleared?`linear-gradient(145deg, ${colors[(lv.num-1)%9].hex}dd, ${colors[(lv.num-1)%9].hex})`:darkMode?"linear-gradient(145deg, #22223A, #1A1A2E)":"linear-gradient(145deg, #FFF, #F0F0F7)", boxShadow:lv.cleared?`0 4px 12px ${colors[(lv.num-1)%9].hex}40`:"0 2px 6px rgba(0,0,0,0.08)" }}>
-                {lv.locked ? <Icons.lock size={18} color={textSecondary} /> : <span style={{ fontSize:18, fontWeight:800, color:lv.cleared?"#FFF":textPrimary, textShadow:lv.cleared?"0 1px 2px rgba(0,0,0,0.3)":"none" }}>{lv.num}</span>}
-                {lv.cleared && <div style={{ display:"flex", gap:1, marginTop:2 }}>
-                  {[0,1,2].map(s => <Icons.star key={s} size={10} filled={s<lv.stars} color={s<lv.stars?"#FFF":"rgba(255,255,255,0.4)"} />)}
-                </div>}
-              </div>
-            ))}
+
+          {/* 進捗バー */}
+          <div style={{ marginBottom:16, padding:"10px 14px", borderRadius:12, background:darkMode?"linear-gradient(145deg, #22223A, #1A1A2E)":"linear-gradient(145deg, #FFF, #F0F0F7)", boxShadow:"0 2px 8px rgba(0,0,0,0.06)" }}>
+            <div style={{ display:"flex", justifyContent:"space-between", marginBottom:6 }}>
+              <span style={{ fontSize:12, fontWeight:600, color:textPrimary }}>進捗</span>
+              <span style={{ fontSize:12, fontWeight:700, color:"#4A90D9" }}>{totalCleared}/{totalLevels} クリア</span>
+            </div>
+            <div style={{ width:"100%", height:8, borderRadius:4, background:darkMode?"#333":"#EEE", overflow:"hidden" }}>
+              <div style={{ width:`${(totalCleared/totalLevels)*100}%`, height:"100%", borderRadius:4, background:"linear-gradient(90deg, #4A90D9, #27AE60)" }} />
+            </div>
+          </div>
+
+          {/* 難易度グループ */}
+          <div style={{ overflow:"auto", maxHeight:340 }}>
+            {diffGroups.map((group, gi) => {
+              const lvls = levelData(group.from, group.to);
+              return (
+                <div key={gi} style={{ marginBottom:16 }}>
+                  <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:8 }}>
+                    <div style={{ width:10, height:10, borderRadius:"50%", background:group.color, boxShadow:`0 0 8px ${group.color}99` }} />
+                    <span style={{ fontSize:12, fontWeight:700, color:group.color }}>{group.name}</span>
+                    <span style={{ fontSize:11, color:textSecondary }}>Lv.{group.from}〜{group.to}</span>
+                  </div>
+                  <div style={{ display:"grid", gridTemplateColumns:"repeat(5, 1fr)", gap:8 }}>
+                    {lvls.map(lv => (
+                      <div key={lv.num} style={{ aspectRatio:"1", borderRadius:12, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", cursor:lv.locked?"default":"pointer", opacity:lv.locked?0.35:1, background:lv.cleared?`linear-gradient(145deg, ${group.color}dd, ${group.color})`:(darkMode?"linear-gradient(145deg, #22223A, #1A1A2E)":"linear-gradient(145deg, #FFF, #F0F0F7)"), boxShadow:lv.cleared?`0 4px 10px ${group.color}40`:"0 2px 6px rgba(0,0,0,0.08)" }}>
+                        {lv.locked
+                          ? <Icons.lock size={14} color={textSecondary} />
+                          : <>
+                              <span style={{ fontSize:16, fontWeight:800, color:lv.cleared?"#FFF":textPrimary, textShadow:lv.cleared?"0 1px 2px rgba(0,0,0,0.3)":"none" }}>{lv.num}</span>
+                              {lv.cleared && (
+                                <div style={{ display:"flex", gap:1, marginTop:2 }}>
+                                  {[0,1,2].map(s => <Icons.star key={s} size={8} filled={s<lv.stars} color={s<lv.stars?"#FFF":"rgba(255,255,255,0.35)"} />)}
+                                </div>
+                              )}
+                            </>
+                        }
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </PhoneFrame>
@@ -334,21 +421,34 @@ export default function IroPreMockup() {
   /* ═══════ GAME SCREEN ═══════ */
   const renderGameScreen = (puzzle, gs, lvText, sizeText, time) => (
     <PhoneFrame>
-      <div style={{ paddingTop:8 }}>
+      <div style={{ paddingTop:8, position:"relative" }}>
+        {/* ヘッダー（レベル一覧へ + タイトル + ポーズ） */}
         <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:gs===9?6:12 }}>
-          <div style={{ cursor:"pointer" }}><Icons.back size={22} color={textPrimary} /></div>
+          <div style={{ cursor:"pointer", padding:4 }} title="レベル選択へ">
+            <Icons.levels size={22} color={textPrimary} />
+          </div>
           <div style={{ textAlign:"center" }}>
             <div style={{ fontSize:12, color:textSecondary }}>{lvText}</div>
             <div style={{ fontSize:16, fontWeight:700, color:textPrimary }}>{sizeText}</div>
           </div>
-          <div style={{ cursor:"pointer" }}><Icons.pause size={20} color={textPrimary} /></div>
+          <div onClick={() => setIsPaused(true)} style={{ cursor:"pointer", padding:4 }}>
+            <Icons.pause size={20} color={textPrimary} />
+          </div>
         </div>
+
+        {/* タイマー */}
         <div style={{ textAlign:"center", marginBottom:gs===9?8:16, display:"flex", alignItems:"center", justifyContent:"center", gap:6 }}>
           <Icons.timer size={16} color={textSecondary} />
           <span style={{ fontSize:gs===9?22:28, fontWeight:300, color:textPrimary, letterSpacing:2, fontVariantNumeric:"tabular-nums" }}>{time}</span>
         </div>
+
+        {/* 盤面 */}
         <div style={{ maxWidth:gs===9?290:gs===6?270:260, margin:`0 auto ${gs===9?10:20}px` }}>{renderGrid(puzzle, gs)}</div>
+
+        {/* パレット */}
         <div style={{ marginBottom:gs===9?10:20 }}><Palette count={gs} /></div>
+
+        {/* ツールバー */}
         <div style={{ display:"flex", justifyContent:"center", gap:20 }}>
           <ToolButton icon={Icons.hint} label="ヒント" />
           <ToolButton icon={Icons.undo} label="戻す" />
@@ -357,6 +457,30 @@ export default function IroPreMockup() {
         <div style={{ textAlign:"center", marginTop:8, fontSize:11, color:textSecondary, display:"flex", alignItems:"center", justifyContent:"center", gap:4 }}>
           <Icons.hint size={12} color={textSecondary} /> ヒント残り: 3/3 回
         </div>
+
+        {/* ポーズオーバーレイ */}
+        {isPaused && (
+          <div style={{ position:"absolute", top:-12, left:-16, right:-16, bottom:-24, background:darkMode?"rgba(15,15,26,0.97)":"rgba(248,249,255,0.97)", borderRadius:36, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:16, padding:32, zIndex:10 }}>
+            <div style={{ width:64, height:64, borderRadius:20, background:"linear-gradient(135deg, #4A90D9, #6B5CE7)", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 8px 24px rgba(74,144,217,0.4)" }}>
+              <Icons.pause size={28} color="#FFF" />
+            </div>
+            <div style={{ fontSize:22, fontWeight:800, color:textPrimary }}>一時停止</div>
+            <div style={{ width:"100%", display:"flex", flexDirection:"column", gap:10 }}>
+              {/* 続ける */}
+              <div onClick={() => setIsPaused(false)} style={{ padding:"14px 0", textAlign:"center", borderRadius:14, background:"linear-gradient(135deg, #4A90D9, #6B5CE7)", color:"#FFF", fontSize:15, fontWeight:700, cursor:"pointer", boxShadow:"0 4px 16px rgba(74,144,217,0.4)", display:"flex", alignItems:"center", justifyContent:"center", gap:8 }}>
+                <Icons.play size={16} color="#FFF" /> 続ける
+              </div>
+              {/* レベル選択へ */}
+              <div onClick={() => { setIsPaused(false); setCurrentScreen(3); }} style={{ padding:"14px 0", textAlign:"center", borderRadius:14, background:darkMode?"linear-gradient(145deg, #22223A, #1A1A2E)":"linear-gradient(145deg, #FFF, #F0F0F7)", color:textPrimary, fontSize:15, fontWeight:600, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", gap:8, boxShadow:"0 2px 8px rgba(0,0,0,0.08)" }}>
+                <Icons.levels size={16} color={textPrimary} /> レベル選択へ
+              </div>
+              {/* ホームへ */}
+              <div onClick={() => { setIsPaused(false); setCurrentScreen(2); }} style={{ padding:"14px 0", textAlign:"center", borderRadius:14, color:textSecondary, fontSize:14, fontWeight:600, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", gap:8 }}>
+                <Icons.home size={15} color={textSecondary} /> ホームへ
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </PhoneFrame>
   );
@@ -488,12 +612,12 @@ export default function IroPreMockup() {
   return (
     <div style={{ minHeight:"100vh", background:"linear-gradient(135deg, #0F0F1A 0%, #1A1A3E 50%, #0F0F1A 100%)", padding:"24px 16px", fontFamily:'-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
       <div style={{ textAlign:"center", marginBottom:24 }}>
-        <h1 style={{ fontSize:26, fontWeight:800, background:"linear-gradient(135deg, #FF6B6B, #4A90D9, #27AE60, #F1C40F)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", margin:"0 0 6px" }}>IroPre — UI Design v1.2</h1>
+        <h1 style={{ fontSize:26, fontWeight:800, background:"linear-gradient(135deg, #FF6B6B, #4A90D9, #27AE60, #F1C40F)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", margin:"0 0 6px" }}>IroPre — UI Design v1.3</h1>
         <p style={{ color:"#8888AA", fontSize:13, margin:0 }}>3Dポップ × カラフル | iOS 18+ SwiftUI | 全10画面 | SVGアイコン</p>
       </div>
       <div style={{ display:"flex", gap:6, justifyContent:"center", flexWrap:"wrap", marginBottom:8 }}>
         {screens.map((name,i) => (
-          <button key={i} onClick={() => setCurrentScreen(i)} style={{ padding:"8px 12px", borderRadius:10, border:"none", cursor:"pointer", fontSize:11, fontWeight:600, background:currentScreen===i?"linear-gradient(135deg, #4A90D9, #6B5CE7)":"rgba(255,255,255,0.08)", color:currentScreen===i?"#FFF":"#8888AA", transition:"all 0.2s" }}>{name}</button>
+          <button key={i} onClick={() => { setCurrentScreen(i); setIsPaused(false); }} style={{ padding:"8px 12px", borderRadius:10, border:"none", cursor:"pointer", fontSize:11, fontWeight:600, background:currentScreen===i?"linear-gradient(135deg, #4A90D9, #6B5CE7)":"rgba(255,255,255,0.08)", color:currentScreen===i?"#FFF":"#8888AA", transition:"all 0.2s" }}>{name}</button>
         ))}
       </div>
       <div style={{ display:"flex", gap:8, justifyContent:"center", marginBottom:24 }}>

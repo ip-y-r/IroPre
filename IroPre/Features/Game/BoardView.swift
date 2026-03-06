@@ -328,6 +328,7 @@ private struct BlockBorderView: View {
                 lineWidth: blockBorderWidth
             )
         }
+        .allowsHitTesting(false)
     }
 
     private func blockBorderPath(cellSize: CGFloat) -> Path {
