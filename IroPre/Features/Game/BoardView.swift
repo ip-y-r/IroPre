@@ -9,44 +9,60 @@ struct BoardView: View {
     var onCellTap: ((Int, Int) -> Void)?
 
     private var gridSize: GridSize { gameState.puzzle.gridSize }
+    private var n: Int { gridSize.rawValue }
+    private var numBlockCols: Int { n / gridSize.blockCols }
+    private var numBlockRows: Int { n / gridSize.blockRows }
+
+    /// ボード内余白 8pt、セル間隔 3pt、ブロック間隔 6pt からセルサイズを逆算
+    private func cellSize(for boardWidth: CGFloat) -> CGFloat {
+        let inner = boardWidth - 16
+        // 水平方向の総間隔: セル間は 3pt × (n-1) ＋ ブロック境界に追加 3pt × (numBlockCols-1)
+        let spacing = CGFloat(n - 1) * 3 + CGFloat(numBlockCols - 1) * 3
+        return (inner - spacing) / CGFloat(n)
+    }
 
     var body: some View {
-        GeometryReader { geometry in
-            let size = geometry.size.width
-            let cellSize = size / CGFloat(gridSize.rawValue)
+        GeometryReader { geo in
+            let cs = cellSize(for: geo.size.width)
 
             ZStack {
-                // セルグリッド
-                VStack(spacing: 0) {
-                    ForEach(0..<gridSize.rawValue, id: \.self) { row in
-                        HStack(spacing: 0) {
-                            ForEach(0..<gridSize.rawValue, id: \.self) { col in
-                                CellView(
-                                    cell: gameState.cells[row][col],
-                                    gridSize: gridSize,
-                                    isSelected: selectedPosition == CellPosition(row: row, col: col),
-                                    isDarkMode: isDarkMode,
-                                    displayMode: displayMode
-                                )
-                                .frame(width: cellSize, height: cellSize)
-                                .onTapGesture {
-                                    onCellTap?(row, col)
+                // ボード背景
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(ColorPalette.boardBackground(isDark: isDarkMode))
+                    .shadow(color: .black.opacity(0.15), radius: 16, x: 0, y: 8)
+
+                // セルグリッド（ブロックグループ方式）
+                VStack(spacing: 6) {
+                    ForEach(0..<numBlockRows, id: \.self) { br in
+                        HStack(spacing: 6) {
+                            ForEach(0..<numBlockCols, id: \.self) { bc in
+                                VStack(spacing: 3) {
+                                    ForEach(0..<gridSize.blockRows, id: \.self) { r in
+                                        HStack(spacing: 3) {
+                                            ForEach(0..<gridSize.blockCols, id: \.self) { c in
+                                                let row = br * gridSize.blockRows + r
+                                                let col = bc * gridSize.blockCols + c
+                                                CellView(
+                                                    cell: gameState.cells[row][col],
+                                                    gridSize: gridSize,
+                                                    isSelected: selectedPosition == CellPosition(row: row, col: col),
+                                                    isDarkMode: isDarkMode,
+                                                    displayMode: displayMode
+                                                )
+                                                .frame(width: cs, height: cs)
+                                                .onTapGesture { onCellTap?(row, col) }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
                 }
-
-                // ブロック境界線（太線）
-                BlockBorderView(gridSize: gridSize, totalSize: size)
+                .padding(8)
             }
         }
         .aspectRatio(1, contentMode: .fit)
-        .clipShape(RoundedRectangle(cornerRadius: 8))
-        .overlay(
-            RoundedRectangle(cornerRadius: 8)
-                .stroke(ColorPalette.blockBorder, lineWidth: 2)
-        )
     }
 }
 
@@ -59,39 +75,29 @@ struct CellView: View {
     let isDarkMode: Bool
     var displayMode: AccessibilityDisplayMode = .color
 
+    private var cellColor: Color? {
+        guard !cell.isEmpty,
+              let puzzleColor = ColorPalette.color(for: cell.colorIndex) else { return nil }
+        return puzzleColor.color(isDarkMode: isDarkMode)
+    }
+
     var body: some View {
         ZStack {
-            // セル背景
-            Rectangle()
-                .fill(backgroundColor)
-                .overlay(
-                    Rectangle()
-                        .stroke(ColorPalette.cellBorder, lineWidth: 0.5)
-                )
+            // 3D グラデーション背景
+            RoundedRectangle(cornerRadius: 10)
+                .fill(cellGradient)
+                .shadow(color: shadowColor, radius: shadowRadius, x: 0, y: shadowY)
 
-            // 選択ハイライト
-            if isSelected && !cell.isPreset {
-                Rectangle()
-                    .fill(ColorPalette.accent.opacity(0.15))
-            }
-
-            // 色（配置時スプリングアニメーション）
+            // 色覚対応オーバーレイ
             if !cell.isEmpty {
-                RoundedRectangle(cornerRadius: 6)
-                    .fill(colorForCell)
-                    .padding(4)
-                    .shadow(color: colorForCell.opacity(0.4), radius: 3, x: 0, y: 2)
-                    .transition(.scale(scale: 0.3, anchor: .center).combined(with: .opacity))
-
-                // 色覚対応オーバーレイ
                 switch displayMode {
                 case .pattern:
                     PatternOverlayView(pattern: CellPattern.pattern(for: cell.colorIndex))
                         .padding(4)
-                        .clipShape(RoundedRectangle(cornerRadius: 6))
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
                 case .symbol:
                     Image(systemName: CellSymbol.symbol(for: cell.colorIndex).sfSymbolName)
-                        .font(.system(size: symbolSize, weight: .bold))
+                        .font(.system(size: symbolFontSize, weight: .bold))
                         .foregroundStyle(.white.opacity(0.9))
                         .shadow(color: .black.opacity(0.3), radius: 1, x: 0, y: 1)
                 case .color:
@@ -99,27 +105,23 @@ struct CellView: View {
                 }
             }
 
-            // エラーハイライト
-            if cell.isError {
-                RoundedRectangle(cornerRadius: 6)
-                    .stroke(ColorPalette.error, lineWidth: 2)
-                    .padding(4)
+            // 選択リング
+            if isSelected && !cell.isPreset {
+                RoundedRectangle(cornerRadius: 10)
+                    .strokeBorder(ColorPalette.accent, lineWidth: 2.5)
             }
 
-            // 選択枠
-            if isSelected && !cell.isPreset {
-                Rectangle()
-                    .stroke(ColorPalette.accent, lineWidth: 1.5)
+            // エラーリング
+            if cell.isError {
+                RoundedRectangle(cornerRadius: 10)
+                    .strokeBorder(ColorPalette.error, lineWidth: 2)
             }
         }
         .animation(
-            .spring(
-                response: Constants.Animation.colorPlaceResponse,
-                dampingFraction: Constants.Animation.colorPlaceDamping
-            ),
+            .spring(response: Constants.Animation.colorPlaceResponse,
+                    dampingFraction: Constants.Animation.colorPlaceDamping),
             value: cell.colorIndex
         )
-        // MARK: VoiceOver
         .accessibilityElement()
         .accessibilityLabel(accessibilityLabelText)
         .accessibilityHint(accessibilityHintText)
@@ -128,43 +130,42 @@ struct CellView: View {
 
     // MARK: - Private
 
-    private var backgroundColor: Color {
-        if cell.isPreset {
-            return Color(.systemGray5)
+    private var cellGradient: AnyShapeStyle {
+        if let color = cellColor {
+            return AnyShapeStyle(LinearGradient(
+                colors: [color.opacity(0.93), color],
+                startPoint: .topLeading, endPoint: .bottomTrailing
+            ))
         }
-        return Color(.systemBackground)
+        return AnyShapeStyle(ColorPalette.emptyCellFill(isDark: isDarkMode))
     }
 
-    private var colorForCell: Color {
-        guard let puzzleColor = ColorPalette.color(for: cell.colorIndex) else {
-            return .clear
-        }
-        return puzzleColor.color(isDarkMode: isDarkMode)
+    private var shadowColor: Color {
+        if let color = cellColor { return color.opacity(0.35) }
+        return .black.opacity(isDarkMode ? 0.25 : 0.07)
     }
 
-    private var symbolSize: CGFloat {
+    private var shadowRadius: CGFloat { cellColor != nil ? 4 : 2 }
+    private var shadowY: CGFloat    { cellColor != nil ? 4 : 2 }
+
+    private var symbolFontSize: CGFloat {
         switch gridSize {
         case .small:  return 18
-        case .medium: return 14
+        case .medium: return 13
         case .large:  return 10
         }
     }
 
     private var accessibilityLabelText: String {
-        let position = "\(cell.row + 1)行\(cell.col + 1)列"
-        if cell.isEmpty {
-            return "\(position) 空きマス"
-        }
-        let colorName = ColorPalette.color(for: cell.colorIndex)?.localizedName ?? "不明"
-        let preset = cell.isPreset ? "（固定）" : ""
-        let error = cell.isError ? "（エラー）" : ""
-        return "\(position) \(colorName)\(preset)\(error)"
+        let pos = "\(cell.row + 1)行\(cell.col + 1)列"
+        if cell.isEmpty { return "\(pos) 空きマス" }
+        let name = ColorPalette.color(for: cell.colorIndex)?.localizedName ?? "不明"
+        return "\(pos) \(name)\(cell.isPreset ? "（固定）" : "")\(cell.isError ? "（エラー）" : "")"
     }
 
     private var accessibilityHintText: String {
         if cell.isPreset { return "" }
-        if cell.isEmpty { return "タップして色を配置します" }
-        return "タップして色を変更します"
+        return cell.isEmpty ? "タップして色を配置します" : "タップして色を変更します"
     }
 }
 
@@ -176,24 +177,15 @@ private struct PatternOverlayView: View {
     var body: some View {
         Canvas { context, size in
             switch pattern {
-            case .solid:
-                break
-            case .dots:
-                drawDots(context: context, size: size)
-            case .stripes:
-                drawStripes(context: context, size: size)
-            case .grid:
-                drawGrid(context: context, size: size)
-            case .diagonal:
-                drawDiagonal(context: context, size: size)
-            case .crosshatch:
-                drawCrosshatch(context: context, size: size)
-            case .circles:
-                drawCircles(context: context, size: size)
-            case .zigzag:
-                drawZigzag(context: context, size: size)
-            case .waves:
-                drawWaves(context: context, size: size)
+            case .solid:      break
+            case .dots:       drawDots(context: context, size: size)
+            case .stripes:    drawStripes(context: context, size: size)
+            case .grid:       drawGrid(context: context, size: size)
+            case .diagonal:   drawDiagonal(context: context, size: size)
+            case .crosshatch: drawCrosshatch(context: context, size: size)
+            case .circles:    drawCircles(context: context, size: size)
+            case .zigzag:     drawZigzag(context: context, size: size)
+            case .waves:      drawWaves(context: context, size: size)
             }
         }
     }
@@ -204,7 +196,8 @@ private struct PatternOverlayView: View {
         while x < size.width {
             var y: CGFloat = 4
             while y < size.height {
-                context.fill(Path(ellipseIn: CGRect(x: x - 2, y: y - 2, width: 4, height: 4)), with: .color(.white.opacity(0.55)))
+                context.fill(Path(ellipseIn: CGRect(x: x-2, y: y-2, width: 4, height: 4)),
+                             with: .color(.white.opacity(0.55)))
                 y += spacing
             }
             x += spacing
@@ -278,11 +271,9 @@ private struct PatternOverlayView: View {
     }
 
     private func drawZigzag(context: GraphicsContext, size: CGSize) {
-        let segW: CGFloat = 6
-        let amp: CGFloat = 5
+        let segW: CGFloat = 6, amp: CGFloat = 5
         var path = Path()
-        var x: CGFloat = 0
-        var goUp = true
+        var x: CGFloat = 0, goUp = true
         path.move(to: CGPoint(x: 0, y: size.height / 2))
         while x < size.width {
             x += segW
@@ -311,62 +302,14 @@ private struct PatternOverlayView: View {
     }
 }
 
-// MARK: - BlockBorderView（ブロック境界の太線）
-
-private struct BlockBorderView: View {
-    let gridSize: GridSize
-    let totalSize: CGFloat
-
-    var body: some View {
-        Canvas { context, _ in
-            let cellSize = totalSize / CGFloat(gridSize.rawValue)
-            let blockBorderWidth: CGFloat = 2.5
-
-            context.stroke(
-                blockBorderPath(cellSize: cellSize),
-                with: .color(ColorPalette.blockBorder),
-                lineWidth: blockBorderWidth
-            )
-        }
-        .allowsHitTesting(false)
-    }
-
-    private func blockBorderPath(cellSize: CGFloat) -> Path {
-        var path = Path()
-        let size = gridSize.rawValue
-
-        // 水平線（ブロック境界）
-        for row in stride(from: 0, through: size, by: gridSize.blockRows) {
-            let y = CGFloat(row) * cellSize
-            path.move(to: CGPoint(x: 0, y: y))
-            path.addLine(to: CGPoint(x: totalSize, y: y))
-        }
-
-        // 垂直線（ブロック境界）
-        for col in stride(from: 0, through: size, by: gridSize.blockCols) {
-            let x = CGFloat(col) * cellSize
-            path.move(to: CGPoint(x: x, y: 0))
-            path.addLine(to: CGPoint(x: x, y: totalSize))
-        }
-
-        return path
-    }
-}
-
 #Preview {
     let puzzle = Puzzle(
-        id: "preview",
-        level: 1,
-        gridSize: .small,
-        difficulty: .beginner,
-        initialBoard: [[1, 0, 0, 4], [0, 3, 1, 0], [0, 1, 4, 0], [4, 0, 0, 2]],
-        solution:     [[1, 2, 3, 4], [4, 3, 1, 2], [2, 1, 4, 3], [3, 4, 2, 1]]
+        id: "preview", level: 1, gridSize: .small, difficulty: .beginner,
+        initialBoard: [[1,0,0,4],[0,3,1,0],[0,1,4,0],[4,0,0,2]],
+        solution:     [[1,2,3,4],[4,3,1,2],[2,1,4,3],[3,4,2,1]]
     )
-    BoardView(
-        gameState: GameState(puzzle: puzzle),
-        isDarkMode: false,
-        selectedPosition: CellPosition(row: 1, col: 1)
-    )
-    .frame(width: 300, height: 300)
-    .padding()
+    BoardView(gameState: GameState(puzzle: puzzle), isDarkMode: false,
+              selectedPosition: CellPosition(row: 1, col: 1))
+        .frame(width: 300, height: 300)
+        .padding()
 }

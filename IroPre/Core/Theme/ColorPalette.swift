@@ -113,6 +113,64 @@ enum ColorPalette {
     static let error = Color(hex: "#FF3B30")
     static let cellBorder = Color(hex: "#C0C0C0")
     static let blockBorder = Color(hex: "#2C3E50")
+
+    // MARK: - Design Tokens（UIDesign.jsx 準拠）
+
+    static let primaryGradientStart = Color(hex: "#4A90D9")
+    static let primaryGradientEnd   = Color(hex: "#6B5CE7")
+    static let successGradientStart = Color(hex: "#27AE60")
+    static let successGradientEnd   = Color(hex: "#2ECC71")
+    static let warningColor         = Color(hex: "#F1C40F")
+
+    static var primaryGradient: LinearGradient {
+        LinearGradient(colors: [primaryGradientStart, primaryGradientEnd],
+                       startPoint: .topLeading, endPoint: .bottomTrailing)
+    }
+
+    static var successGradient: LinearGradient {
+        LinearGradient(colors: [successGradientStart, successGradientEnd],
+                       startPoint: .topLeading, endPoint: .bottomTrailing)
+    }
+
+    static func boardBackground(isDark: Bool) -> LinearGradient {
+        isDark
+            ? LinearGradient(colors: [Color(hex: "#16162B"), Color(hex: "#0F0F1A")],
+                             startPoint: .topLeading, endPoint: .bottomTrailing)
+            : LinearGradient(colors: [Color(hex: "#E8EBF5"), Color(hex: "#DDE0F0")],
+                             startPoint: .topLeading, endPoint: .bottomTrailing)
+    }
+
+    static func cardFill(isDark: Bool) -> LinearGradient {
+        isDark
+            ? LinearGradient(colors: [Color(hex: "#22223A"), Color(hex: "#1A1A2E")],
+                             startPoint: .topLeading, endPoint: .bottomTrailing)
+            : LinearGradient(colors: [Color.white, Color(hex: "#F8F9FF")],
+                             startPoint: .topLeading, endPoint: .bottomTrailing)
+    }
+
+    static func appBackground(isDark: Bool) -> Color {
+        isDark ? Color(hex: "#0F0F1A") : Color(hex: "#F8F9FF")
+    }
+
+    static func primaryTextColor(isDark: Bool) -> Color {
+        isDark ? .white : Color(hex: "#1A1A2E")
+    }
+
+    static func secondaryTextColor(isDark: Bool) -> Color {
+        isDark ? Color(hex: "#8888AA") : Color(hex: "#6B7280")
+    }
+
+    static func iconColor(isDark: Bool) -> Color {
+        isDark ? Color(hex: "#CCCCDD") : Color(hex: "#555566")
+    }
+
+    static func emptyCellFill(isDark: Bool) -> LinearGradient {
+        isDark
+            ? LinearGradient(colors: [Color(hex: "#22223A"), Color(hex: "#1A1A2E")],
+                             startPoint: .topLeading, endPoint: .bottomTrailing)
+            : LinearGradient(colors: [.white, Color(hex: "#F0F0F7")],
+                             startPoint: .topLeading, endPoint: .bottomTrailing)
+    }
 }
 
 // MARK: - Color Hex Extension

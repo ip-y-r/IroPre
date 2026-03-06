@@ -10,7 +10,7 @@ struct PaletteView: View {
     private var colors: [PuzzleColor] { ColorPalette.colors(for: gridSize) }
 
     var body: some View {
-        HStack(spacing: 10) {
+        HStack(spacing: 8) {
             ForEach(colors, id: \.index) { puzzleColor in
                 PaletteColorButton(
                     puzzleColor: puzzleColor,
@@ -21,9 +21,12 @@ struct PaletteView: View {
             }
         }
         .padding(.vertical, 12)
-        .padding(.horizontal, 8)
-        .background(Color(.systemGray6))
-        .clipShape(RoundedRectangle(cornerRadius: 20))
+        .padding(.horizontal, 10)
+        .background(
+            RoundedRectangle(cornerRadius: 20)
+                .fill(ColorPalette.cardFill(isDark: isDarkMode))
+                .shadow(color: .black.opacity(0.08), radius: 8, x: 0, y: 4)
+        )
     }
 }
 
@@ -35,25 +38,44 @@ private struct PaletteColorButton: View {
     let isDarkMode: Bool
     let onTap: () -> Void
 
+    private var color: Color { puzzleColor.color(isDarkMode: isDarkMode) }
+
     var body: some View {
         Button(action: onTap) {
             ZStack {
-                Circle()
-                    .fill(puzzleColor.color(isDarkMode: isDarkMode))
-                    .shadow(
-                        color: puzzleColor.color(isDarkMode: isDarkMode).opacity(isSelected ? 0.6 : 0.3),
-                        radius: isSelected ? 8 : 4,
-                        x: 0,
-                        y: isSelected ? 4 : 2
-                    )
-
+                // 選択時のダブルリング（外側: カード背景色、内側: その色）
                 if isSelected {
-                    Circle()
-                        .strokeBorder(.white, lineWidth: 3)
+                    RoundedRectangle(cornerRadius: 14)
+                        .strokeBorder(
+                            isDarkMode ? Color(hex: "#1A1A2E") : Color.white,
+                            lineWidth: 3
+                        )
+                        .padding(-3)
+
+                    RoundedRectangle(cornerRadius: 14)
+                        .strokeBorder(color, lineWidth: 2)
+                        .padding(-5)
                 }
+
+                // 3D グラデーション本体
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(LinearGradient(
+                        colors: [color.opacity(0.93), color],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    ))
+                    .shadow(
+                        color: color.opacity(isSelected ? 0.55 : 0.3),
+                        radius: isSelected ? 8 : 4,
+                        x: 0, y: isSelected ? 5 : 3
+                    )
             }
-            .scaleEffect(isSelected ? 1.15 : 1.0)
-            .animation(.spring(response: 0.25, dampingFraction: 0.6), value: isSelected)
+            .scaleEffect(isSelected ? 1.1 : 1.0)
+            .animation(
+                .spring(response: Constants.Animation.paletteSelectResponse,
+                        dampingFraction: Constants.Animation.paletteSelectDamping),
+                value: isSelected
+            )
         }
         .frame(maxWidth: .infinity)
         .aspectRatio(1, contentMode: .fit)
@@ -64,22 +86,12 @@ private struct PaletteColorButton: View {
 }
 
 #Preview {
-    VStack {
-        PaletteView(
-            gridSize: .small,
-            selectedColorIndex: 2,
-            isDarkMode: false,
-            onColorSelected: { _ in }
-        )
-        .padding()
+    VStack(spacing: 16) {
+        PaletteView(gridSize: .small, selectedColorIndex: 2, isDarkMode: false, onColorSelected: { _ in })
+            .padding()
 
-        PaletteView(
-            gridSize: .large,
-            selectedColorIndex: 5,
-            isDarkMode: true,
-            onColorSelected: { _ in }
-        )
-        .padding()
-        .background(.black)
+        PaletteView(gridSize: .large, selectedColorIndex: 5, isDarkMode: true, onColorSelected: { _ in })
+            .padding()
+            .background(Color(hex: "#0F0F1A"))
     }
 }
