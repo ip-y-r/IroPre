@@ -1,7 +1,6 @@
 // MARK: - レベル選択画面 ViewModel
 import Foundation
 
-@MainActor
 @Observable
 final class LevelSelectViewModel {
     var selectedGridSize: GridSize = .small
@@ -13,6 +12,7 @@ final class LevelSelectViewModel {
         self.repository = repository
     }
 
+    @MainActor
     func loadClearedLevels() async {
         let records = (try? await repository.loadAllClearRecords()) ?? []
         let currentGridSize = selectedGridSize.rawValue

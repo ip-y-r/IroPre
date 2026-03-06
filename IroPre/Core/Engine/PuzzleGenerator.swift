@@ -82,7 +82,7 @@ struct PuzzleGenerator: PuzzleGenerating {
         let cellsToRemove = removeCellCount(gridSize: gridSize, difficulty: difficulty)
 
         // ランダムな順序でセルを削除
-        var positions = (0..<size).flatMap { row in
+        let positions = (0..<size).flatMap { row in
             (0..<size).map { col in (row, col) }
         }.shuffled()
 

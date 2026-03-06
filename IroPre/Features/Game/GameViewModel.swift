@@ -1,7 +1,6 @@
 // MARK: - ゲーム画面 ViewModel
 import Foundation
 
-@MainActor
 @Observable
 final class GameViewModel {
     private let level: Int
@@ -36,6 +35,7 @@ final class GameViewModel {
 
     // MARK: - Puzzle Loading
 
+    @MainActor
     func loadPuzzle() async {
         let difficulty = difficulty(for: level)
         let result = generator.generate(gridSize: gridSize, difficulty: difficulty, level: level)
@@ -50,6 +50,7 @@ final class GameViewModel {
 
     // MARK: - Timer
 
+    @MainActor
     func startTimer() {
         timerTask?.cancel()
         timerTask = Task {
@@ -63,6 +64,7 @@ final class GameViewModel {
         }
     }
 
+    @MainActor
     func stopTimer() {
         timerTask?.cancel()
         timerTask = nil
@@ -70,6 +72,7 @@ final class GameViewModel {
 
     // MARK: - Game Actions
 
+    @MainActor
     func selectColor(_ index: Int) {
         guard let state = gameState else { return }
         if state.selectedColorIndex == index {
@@ -79,6 +82,7 @@ final class GameViewModel {
         }
     }
 
+    @MainActor
     func tapCell(row: Int, col: Int) {
         guard let state = gameState, state.phase == .playing else { return }
         errorPositions.removeAll()
@@ -89,17 +93,20 @@ final class GameViewModel {
         }
     }
 
+    @MainActor
     func undo() {
         gameState?.undo()
         errorPositions.removeAll()
     }
 
+    @MainActor
     func eraseSelectedCell() {
         guard let pos = selectedCellPosition else { return }
         gameState?.eraseCell(row: pos.row, col: pos.col)
         errorPositions.removeAll()
     }
 
+    @MainActor
     func requestHint() {
         guard let state = gameState else { return }
         guard let pos = selectedCellPosition else { return }
@@ -117,12 +124,14 @@ final class GameViewModel {
         }
     }
 
+    @MainActor
     func pause() {
         gameState?.phase = .paused
         isPaused = true
         stopTimer()
     }
 
+    @MainActor
     func resume() {
         gameState?.phase = .playing
         isPaused = false
@@ -140,6 +149,7 @@ final class GameViewModel {
 
     // MARK: - Private
 
+    @MainActor
     private func checkCompletion() {
         guard let state = gameState else { return }
         guard state.isBoardFull else { return }
@@ -151,6 +161,7 @@ final class GameViewModel {
         }
     }
 
+    @MainActor
     private func saveClearRecord() async {
         guard let state = gameState else { return }
         let record = ClearRecord(
