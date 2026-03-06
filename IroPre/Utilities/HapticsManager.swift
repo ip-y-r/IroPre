@@ -2,6 +2,7 @@
 import UIKit
 
 /// ハプティクスフィードバック管理（PRD Phase 4）
+@MainActor
 enum HapticsManager {
     /// 衝撃フィードバック（タップ・配置など）
     static func impact(_ style: UIImpactFeedbackGenerator.FeedbackStyle) {
