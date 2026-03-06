@@ -1,16 +1,29 @@
 // MARK: - レベル選択画面 ViewModel
 import Foundation
 
+@MainActor
 @Observable
 final class LevelSelectViewModel {
     var selectedGridSize: GridSize = .small
+
+    private var clearedLevels: Set<Int> = []
+    private let repository: GameRepositoryProtocol
+
+    init(repository: GameRepositoryProtocol = GameRepository()) {
+        self.repository = repository
+    }
+
+    func loadClearedLevels() async {
+        let records = (try? await repository.loadAllClearRecords()) ?? []
+        let currentGridSize = selectedGridSize.rawValue
+        clearedLevels = Set(records.filter { $0.gridSize == currentGridSize }.map { $0.level })
+    }
 
     func levels(for gridSize: GridSize) -> [Int] {
         Array(gridSize.levelRange)
     }
 
     func isCleared(level: Int) -> Bool {
-        // TODO: Phase 2 でリポジトリと接続
-        return false
+        clearedLevels.contains(level)
     }
 }

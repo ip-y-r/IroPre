@@ -3,6 +3,7 @@ import SwiftUI
 
 struct BoardView: View {
     let gameState: GameState
+    var selectedPosition: CellPosition? = nil
     var onCellTap: ((Int, Int) -> Void)?
 
     private var gridSize: GridSize { gameState.puzzle.gridSize }
@@ -21,7 +22,7 @@ struct BoardView: View {
                                 CellView(
                                     cell: gameState.cells[row][col],
                                     gridSize: gridSize,
-                                    isSelected: gameState.selectedColorIndex != nil
+                                    isSelected: selectedPosition == CellPosition(row: row, col: col)
                                 )
                                 .frame(width: cellSize, height: cellSize)
                                 .onTapGesture {
@@ -62,6 +63,12 @@ struct CellView: View {
                         .stroke(ColorPalette.cellBorder, lineWidth: 0.5)
                 )
 
+            // 選択ハイライト
+            if isSelected && !cell.isPreset {
+                Rectangle()
+                    .fill(ColorPalette.accent.opacity(0.15))
+            }
+
             // 色
             if !cell.isEmpty {
                 RoundedRectangle(cornerRadius: 6)
@@ -75,6 +82,12 @@ struct CellView: View {
                 RoundedRectangle(cornerRadius: 6)
                     .stroke(ColorPalette.error, lineWidth: 2)
                     .padding(4)
+            }
+
+            // 選択枠
+            if isSelected && !cell.isPreset {
+                Rectangle()
+                    .stroke(ColorPalette.accent, lineWidth: 1.5)
             }
         }
     }
@@ -144,7 +157,10 @@ private struct BlockBorderView: View {
         initialBoard: [[1, 0, 0, 4], [0, 3, 1, 0], [0, 1, 4, 0], [4, 0, 0, 2]],
         solution:     [[1, 2, 3, 4], [4, 3, 1, 2], [2, 1, 4, 3], [3, 4, 2, 1]]
     )
-    BoardView(gameState: GameState(puzzle: puzzle))
-        .frame(width: 300, height: 300)
-        .padding()
+    BoardView(
+        gameState: GameState(puzzle: puzzle),
+        selectedPosition: CellPosition(row: 1, col: 1)
+    )
+    .frame(width: 300, height: 300)
+    .padding()
 }

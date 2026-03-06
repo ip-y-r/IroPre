@@ -1,6 +1,12 @@
 // MARK: - セルモデル
 import Foundation
 
+/// 盤面上の位置を表す型
+struct CellPosition: Equatable, Hashable, Sendable {
+    let row: Int
+    let col: Int
+}
+
 /// パズル盤面の1マスを表すモデル
 struct Cell: Identifiable, Equatable, Sendable {
     let id: UUID

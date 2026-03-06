@@ -32,6 +32,12 @@ struct LevelSelectView: View {
         }
         .navigationTitle("レベル選択")
         .navigationBarTitleDisplayMode(.inline)
+        .task {
+            await viewModel.loadClearedLevels()
+        }
+        .onChange(of: viewModel.selectedGridSize) {
+            Task { await viewModel.loadClearedLevels() }
+        }
     }
 }
 
