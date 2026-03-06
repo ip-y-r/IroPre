@@ -3,6 +3,7 @@ import Foundation
 import SwiftData
 
 @Observable
+@MainActor
 final class SettingsViewModel {
     var isDarkMode: Bool = false
     var accessibilityMode: AccessibilityDisplayMode = .color
@@ -14,8 +15,8 @@ final class SettingsViewModel {
     private let context: ModelContext
     private var record: UserSettings?
 
-    init(context: ModelContext = SwiftDataManager.shared.container.mainContext) {
-        self.context = context
+    init() {
+        self.context = SwiftDataManager.shared.container.mainContext
         loadSettings()
     }
 
