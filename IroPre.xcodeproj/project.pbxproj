@@ -23,7 +23,6 @@
 		51B5D5A5EFF65D8A760A00BE /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D34833362C144EF9C32E78C /* Cell.swift */; };
 		580AE18C75B73850C4EEC39E /* PuzzleGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B08568ECDD7E4BD65742D64 /* PuzzleGeneratorTests.swift */; };
 		5A1B2C3D4E5F6A7B8C9D0E1F /* GameStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6A7B8C9D0E1F2 /* GameStateTests.swift */; };
-		B1C2D3E4F5A6B7C8D9E0F1A2 /* HintEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3E4F5A6B7C8D9E0F1A2B3 /* HintEngineTests.swift */; };
 		5AD7DC03E0B80B1E0C1C6E87 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAFA4DF2B29BEC9FAA92D8E /* SettingsViewModel.swift */; };
 		619B04FD4AB60C63E3430935 /* AccessibilityMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5391E23997F555059DA0ED1 /* AccessibilityMode.swift */; };
 		64744C698C86EA4C963B3CDA /* TutorialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F372E4735C34C307E5634083 /* TutorialViewModel.swift */; };
@@ -35,9 +34,11 @@
 		8E1626BD8A567336A373FD08 /* HintEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C751E4740C807D4E9EBC5796 /* HintEngine.swift */; };
 		A857E589AE9F8A7D21584AA7 /* PuzzleValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA813C5665AF1A42F669AB36 /* PuzzleValidator.swift */; };
 		AFDDDC674584DEF50EBFBE35 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959EBAC873C7AFCB70FD0A15 /* UserSettings.swift */; };
+		B1C2D3E4F5A6B7C8D9E0F1A2 /* HintEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3E4F5A6B7C8D9E0F1A2B3 /* HintEngineTests.swift */; };
 		B38154BC68A86A3BE3A67989 /* PuzzlePresets.json in Resources */ = {isa = PBXBuildFile; fileRef = EFC1FDCAC281B1A4399E1AB1 /* PuzzlePresets.json */; };
 		B4D22837A1891B44FDBDD43F /* IroPreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920F14666D46C59A5B096E01 /* IroPreApp.swift */; };
 		B8F06F0B7F1FDDEA9D91DEC4 /* PauseOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A266F5B4F57C6F29480365F8 /* PauseOverlayView.swift */; };
+		BB11223344556677889900BB /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900AA /* SplashView.swift */; };
 		BD9770C6A898070066303A6E /* LevelSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55027E64AE296BE7A654137F /* LevelSelectView.swift */; };
 		C3A2E4E434591BC8F98EE526 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC652166869B9ECAF930C768 /* HomeView.swift */; };
 		C58DFA0A3ECDF1EA0D40B7E4 /* TimeInterval+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD467437CBCECD248438401 /* TimeInterval+Extensions.swift */; };
@@ -45,14 +46,13 @@
 		CDE36DEBF82744CC02BCB5CC /* SwiftDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F55FFE3EBB1AB1806167AC /* SwiftDataManager.swift */; };
 		DB7BC6A4A080EEDBC59135AC /* PuzzleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7FCFA06C01B64CB695BCBD /* PuzzleGenerator.swift */; };
 		DBD3E8BEBE880D794928E048 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF26098B3A3ED41A6BA9082 /* BoardView.swift */; };
+		DD11223344556677889900DD /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC11223344556677889900CC /* HapticsManager.swift */; };
 		E312DF0CA2C885F1CB6809BF /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF6F8A34B7A9FAB51D07F80 /* ColorPalette.swift */; };
 		E70B6EF0871301BBBD84E7CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED9B290DA18511D97397681 /* ContentView.swift */; };
 		EABE40D126323676EA86A8A0 /* Puzzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB139849E1831F0EA2B417ED /* Puzzle.swift */; };
 		EB707C45B97789C0BCDCA6E2 /* AchievementsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4583AD37DD497742033F00D /* AchievementsViewModel.swift */; };
 		EFE8E63D7E2998D6177E0309 /* PaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531BFC910409E6DEDCED1E7F /* PaletteView.swift */; };
 		FC430B5479969F86CE965BFE /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D147F194AC53A3A3549FB7 /* GameViewModel.swift */; };
-		BB11223344556677889900BB /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900AA /* SplashView.swift */; };
-		DD11223344556677889900DD /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC11223344556677889900CC /* HapticsManager.swift */; };
 		FF11223344556677889900FF /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11223344556677889900EE /* SoundManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -75,8 +75,6 @@
 		398B3CCAD520B9D60916C3E5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3A7FCFA06C01B64CB695BCBD /* PuzzleGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleGenerator.swift; sourceTree = "<group>"; };
 		3B08568ECDD7E4BD65742D64 /* PuzzleGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleGeneratorTests.swift; sourceTree = "<group>"; };
-		A1B2C3D4E5F6A7B8C9D0E1F2 /* GameStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateTests.swift; sourceTree = "<group>"; };
-		C2D3E4F5A6B7C8D9E0F1A2B3 /* HintEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintEngineTests.swift; sourceTree = "<group>"; };
 		3C2705C5C74EFDC87CE7F42D /* ClearRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearRecord.swift; sourceTree = "<group>"; };
 		41713886E6D05110E8128819 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4F7C6ABAE566B08DEEAEDF4E /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
@@ -92,21 +90,26 @@
 		920F14666D46C59A5B096E01 /* IroPreApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IroPreApp.swift; sourceTree = "<group>"; };
 		9509BEC50D2025C8DC7D9605 /* IroPreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IroPreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		959EBAC873C7AFCB70FD0A15 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F6A7B8C9D0E1F2 /* GameStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateTests.swift; sourceTree = "<group>"; };
 		A266F5B4F57C6F29480365F8 /* PauseOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseOverlayView.swift; sourceTree = "<group>"; };
 		A4583AD37DD497742033F00D /* AchievementsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsViewModel.swift; sourceTree = "<group>"; };
 		A5391E23997F555059DA0ED1 /* AccessibilityMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityMode.swift; sourceTree = "<group>"; };
+		AA11223344556677889900AA /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		AC174F02347B811CDAF49C40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ADAFA4DF2B29BEC9FAA92D8E /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		BE665527F0B4D3068C25F9F6 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		C2D3E4F5A6B7C8D9E0F1A2B3 /* HintEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintEngineTests.swift; sourceTree = "<group>"; };
 		C4548B8850BC9EA32EC7B002 /* IroPre.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IroPre.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C751E4740C807D4E9EBC5796 /* HintEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintEngine.swift; sourceTree = "<group>"; };
 		CA813C5665AF1A42F669AB36 /* PuzzleValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleValidator.swift; sourceTree = "<group>"; };
+		CC11223344556677889900CC /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		CC652166869B9ECAF930C768 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CC970901658A588A59F223FC /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CE13FBDB0C52A4F87E4B63EB /* AchievementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsView.swift; sourceTree = "<group>"; };
 		D391B660E45BDD8A34059420 /* Move.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Move.swift; sourceTree = "<group>"; };
 		DEF6F8A34B7A9FAB51D07F80 /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		DFD467437CBCECD248438401 /* TimeInterval+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Extensions.swift"; sourceTree = "<group>"; };
+		EE11223344556677889900EE /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		EFC1FDCAC281B1A4399E1AB1 /* PuzzlePresets.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PuzzlePresets.json; sourceTree = "<group>"; };
 		F219F8AB618D65A4D447A026 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		F372E4735C34C307E5634083 /* TutorialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewModel.swift; sourceTree = "<group>"; };
@@ -114,9 +117,6 @@
 		FCD228BBFC56DC0CAD99A795 /* GameRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRepository.swift; sourceTree = "<group>"; };
 		FCF26098B3A3ED41A6BA9082 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		FD65A3F1207156B33E185C3E /* AchievementRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementRecord.swift; sourceTree = "<group>"; };
-		AA11223344556677889900AA /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
-		CC11223344556677889900CC /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
-		EE11223344556677889900EE /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -527,11 +527,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7654VNZR2Y;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = IroPre/Resources/Info.plist;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -611,11 +612,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7654VNZR2Y;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = IroPre/Resources/Info.plist;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
