@@ -1,0 +1,725 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ED7C9A4836914CE9A26F14FA = {isa = PBXBuildFile; fileRef = 69FFF6748E934CCBBCB3A1E5; };
+		B983ECAD310B4D0CA007F1F2 = {isa = PBXBuildFile; fileRef = 280B2E8661FE40FD985E4BF7; };
+		F56FFD8CDC2147DFA503EE23 = {isa = PBXBuildFile; fileRef = B1BB3C80335E469FAC3EDC4F; };
+		092FBDF4F7AB41EBBCE18CDF = {isa = PBXBuildFile; fileRef = BF738F54A159428B9D500D4B; };
+		CBC5BFA693C34B24A65C9056 = {isa = PBXBuildFile; fileRef = 89A47B1C430E48FC889484CB; };
+		5AE481735DCD4C1AA041E970 = {isa = PBXBuildFile; fileRef = FF85F49E6E7D416D8DFF9C8C; };
+		57DA5EF0235146C5BB6A6C6F = {isa = PBXBuildFile; fileRef = 060A68968FC54382BBC8D4E2; };
+		CE39872B19244AC59549DB4B = {isa = PBXBuildFile; fileRef = CE704D9D662E4D3A8D6FC297; };
+		033EED1F02AC4CE2AE27418B = {isa = PBXBuildFile; fileRef = 03FE9B6C57014162AECD69E8; };
+		866840BFE7474B5A88092C12 = {isa = PBXBuildFile; fileRef = DBDDE0D3A0EA46A58EE492E6; };
+		801308ED427047E6991FA486 = {isa = PBXBuildFile; fileRef = 0BB817EF5CED4DED8351AE2D; };
+		7EA04D849B9D4AA284AC264A = {isa = PBXBuildFile; fileRef = 69EAEE26DEF745B08AAAF086; };
+		4455A67EFE84460596AA0349 = {isa = PBXBuildFile; fileRef = 9CDDC70F75534EAD80692944; };
+		61C8B178B29B4F16803A74B4 = {isa = PBXBuildFile; fileRef = 83CB1BA3E678412A84800A34; };
+		2F9B79016CFC4860BA8927CF = {isa = PBXBuildFile; fileRef = E55F659F6CFC48299D7AA537; };
+		3140E97189DC4C8C8CB97276 = {isa = PBXBuildFile; fileRef = F6B7A5B2B48C41FA8551C868; };
+		0F1A02F34B0B4DFC8113B837 = {isa = PBXBuildFile; fileRef = 0C7D8E1DD3604A8DAAEC439E; };
+		3693A608A9EE4024B8040092 = {isa = PBXBuildFile; fileRef = F9366592B7D3428E950A7242; };
+		B62FD9E984D6428D9F671975 = {isa = PBXBuildFile; fileRef = EC95F6E1C722459BB08E33C2; };
+		34387F3746934FECADA92710 = {isa = PBXBuildFile; fileRef = 4B4F4E1339AC46C199D1B912; };
+		E91CC72529FC47D5B596B370 = {isa = PBXBuildFile; fileRef = 950F0D9547804555A47E4375; };
+		B2D81F798AEE41D083C16B65 = {isa = PBXBuildFile; fileRef = 05605DC6F5E445F7AC373073; };
+		76B76F349B82400FB6372E69 = {isa = PBXBuildFile; fileRef = 8706BEA7FEF74F32AB90B17B; };
+		6D35599C45274539BB401D9F = {isa = PBXBuildFile; fileRef = 7F1B0BB217E1481890A9D200; };
+		CB05815FCF47430A8B460F61 = {isa = PBXBuildFile; fileRef = FA33ABA0851E4017AE0CD0F0; };
+		18180A1235444225BDF5FC72 = {isa = PBXBuildFile; fileRef = 2BB9B0DD669D487EAB36CAC3; };
+		C196FCEFB4CF415DA5839C11 = {isa = PBXBuildFile; fileRef = 4129237B9D19483B937329E1; };
+		A20E1790A3904412B23BBA11 = {isa = PBXBuildFile; fileRef = DC7B1CC3CB344B3EBA9747F9; };
+		4CDC8D0B13DA477FBFCBA970 = {isa = PBXBuildFile; fileRef = 33E3CE521CFB4603AED1147A; };
+		20F8BF4C578B4DEAB63D8FB0 = {isa = PBXBuildFile; fileRef = 0913715907744178B0B0F87A; };
+		AA1476BDA4D44BD699D84D2E = {isa = PBXBuildFile; fileRef = DDEFEB8B42044346BD5EEDFF; };
+		C2BACDAC075B4680B6F68D1B = {isa = PBXBuildFile; fileRef = 360C26876FD34F989DA0FCE6; };
+		B467781F9448453C98CA44D8 = {isa = PBXBuildFile; fileRef = B5D6C50756E14F20A0870616; };
+		C430A982E17D4B788ECB415B = {isa = PBXBuildFile; fileRef = F40FC94E22D047B89470EDDE; };
+		02CED299EE42444C9AAFD853 = {isa = PBXBuildFile; fileRef = 9E02A9D949EE4AE1A5A8C6D9; };
+		43C684F87125495FA4EB7E5C = {isa = PBXBuildFile; fileRef = EB581AF08ECE4E99888832E4; };
+		C0DCEC11DE2B462AB1C4F3C0 = {isa = PBXBuildFile; fileRef = 48083B9B438542D0B57C2E69; };
+		6744B11BC9BC44D1B5DB5039 = {isa = PBXBuildFile; fileRef = AC716B42011A4548B52CF3EB; };
+		4939F62A5E7943C48F4B3B55 = {isa = PBXBuildFile; fileRef = 24C8F0B44FE0476AAC93851B; };
+		A414AF9EA75A4780AC66E03B = {isa = PBXBuildFile; fileRef = 6D5EA05933764870BB8B745F; };
+		7A1FB14F4BDE4CECADD19478 = {isa = PBXBuildFile; fileRef = B45A6C3C88114750ABDC2A43; };
+		CBE6FBDB9C434BA08878B7DA = {isa = PBXBuildFile; fileRef = D0659689BC994C878E6F4F53; };
+		1ADA4CE6FF094343B05710D4 = {isa = PBXBuildFile; fileRef = 0F59F152B2AC4E4E94C4CD06; };
+		F43DEF0B19FB48EDAA6E9519 = {isa = PBXBuildFile; fileRef = B205A3F282D34825B6670DEA; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B205A3F282D34825B6670DEA = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IroPre.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		357D5B16B4C14ACFAF00239C = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IroPreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		69FFF6748E934CCBBCB3A1E5 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IroPreApp.swift; path = IroPre/App/IroPreApp.swift; sourceTree = "<group>"; };
+		280B2E8661FE40FD985E4BF7 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = IroPre/App/ContentView.swift; sourceTree = "<group>"; };
+		B1BB3C80335E469FAC3EDC4F = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Cell.swift; path = IroPre/Core/Models/Cell.swift; sourceTree = "<group>"; };
+		BF738F54A159428B9D500D4B = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Move.swift; path = IroPre/Core/Models/Move.swift; sourceTree = "<group>"; };
+		89A47B1C430E48FC889484CB = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Puzzle.swift; path = IroPre/Core/Models/Puzzle.swift; sourceTree = "<group>"; };
+		FF85F49E6E7D416D8DFF9C8C = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameState.swift; path = IroPre/Core/Models/GameState.swift; sourceTree = "<group>"; };
+		060A68968FC54382BBC8D4E2 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Achievement.swift; path = IroPre/Core/Models/Achievement.swift; sourceTree = "<group>"; };
+		CE704D9D662E4D3A8D6FC297 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PuzzleGenerator.swift; path = IroPre/Core/Engine/PuzzleGenerator.swift; sourceTree = "<group>"; };
+		03FE9B6C57014162AECD69E8 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PuzzleValidator.swift; path = IroPre/Core/Engine/PuzzleValidator.swift; sourceTree = "<group>"; };
+		DBDDE0D3A0EA46A58EE492E6 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HintEngine.swift; path = IroPre/Core/Engine/HintEngine.swift; sourceTree = "<group>"; };
+		0BB817EF5CED4DED8351AE2D = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorPalette.swift; path = IroPre/Core/Theme/ColorPalette.swift; sourceTree = "<group>"; };
+		69EAEE26DEF745B08AAAF086 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccessibilityMode.swift; path = IroPre/Core/Theme/AccessibilityMode.swift; sourceTree = "<group>"; };
+		9CDDC70F75534EAD80692944 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FontManager.swift; path = IroPre/Core/Theme/FontManager.swift; sourceTree = "<group>"; };
+		83CB1BA3E678412A84800A34 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeView.swift; path = IroPre/Features/Home/HomeView.swift; sourceTree = "<group>"; };
+		E55F659F6CFC48299D7AA537 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewModel.swift; path = IroPre/Features/Home/HomeViewModel.swift; sourceTree = "<group>"; };
+		F6B7A5B2B48C41FA8551C868 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameView.swift; path = IroPre/Features/Game/GameView.swift; sourceTree = "<group>"; };
+		0C7D8E1DD3604A8DAAEC439E = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameViewModel.swift; path = IroPre/Features/Game/GameViewModel.swift; sourceTree = "<group>"; };
+		F9366592B7D3428E950A7242 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BoardView.swift; path = IroPre/Features/Game/BoardView.swift; sourceTree = "<group>"; };
+		EC95F6E1C722459BB08E33C2 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PaletteView.swift; path = IroPre/Features/Game/PaletteView.swift; sourceTree = "<group>"; };
+		4B4F4E1339AC46C199D1B912 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PauseOverlayView.swift; path = IroPre/Features/Game/PauseOverlayView.swift; sourceTree = "<group>"; };
+		950F0D9547804555A47E4375 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LevelSelectView.swift; path = IroPre/Features/LevelSelect/LevelSelectView.swift; sourceTree = "<group>"; };
+		05605DC6F5E445F7AC373073 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LevelSelectViewModel.swift; path = IroPre/Features/LevelSelect/LevelSelectViewModel.swift; sourceTree = "<group>"; };
+		8706BEA7FEF74F32AB90B17B = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TutorialView.swift; path = IroPre/Features/Tutorial/TutorialView.swift; sourceTree = "<group>"; };
+		7F1B0BB217E1481890A9D200 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TutorialViewModel.swift; path = IroPre/Features/Tutorial/TutorialViewModel.swift; sourceTree = "<group>"; };
+		FA33ABA0851E4017AE0CD0F0 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AchievementsView.swift; path = IroPre/Features/Achievements/AchievementsView.swift; sourceTree = "<group>"; };
+		2BB9B0DD669D487EAB36CAC3 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AchievementsViewModel.swift; path = IroPre/Features/Achievements/AchievementsViewModel.swift; sourceTree = "<group>"; };
+		4129237B9D19483B937329E1 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsView.swift; path = IroPre/Features/Settings/SettingsView.swift; sourceTree = "<group>"; };
+		DC7B1CC3CB344B3EBA9747F9 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsViewModel.swift; path = IroPre/Features/Settings/SettingsViewModel.swift; sourceTree = "<group>"; };
+		33E3CE521CFB4603AED1147A = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameProgress.swift; path = IroPre/Data/Storage/GameProgress.swift; sourceTree = "<group>"; };
+		0913715907744178B0B0F87A = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClearRecord.swift; path = IroPre/Data/Storage/ClearRecord.swift; sourceTree = "<group>"; };
+		DDEFEB8B42044346BD5EEDFF = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AchievementRecord.swift; path = IroPre/Data/Storage/AchievementRecord.swift; sourceTree = "<group>"; };
+		360C26876FD34F989DA0FCE6 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserSettings.swift; path = IroPre/Data/Storage/UserSettings.swift; sourceTree = "<group>"; };
+		B5D6C50756E14F20A0870616 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwiftDataManager.swift; path = IroPre/Data/Storage/SwiftDataManager.swift; sourceTree = "<group>"; };
+		F40FC94E22D047B89470EDDE = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameRepository.swift; path = IroPre/Data/Repository/GameRepository.swift; sourceTree = "<group>"; };
+		9E02A9D949EE4AE1A5A8C6D9 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AchievementRepository.swift; path = IroPre/Data/Repository/AchievementRepository.swift; sourceTree = "<group>"; };
+		EB581AF08ECE4E99888832E4 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = IroPre/Utilities/Constants.swift; sourceTree = "<group>"; };
+		48083B9B438542D0B57C2E69 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = View+Extensions.swift; path = IroPre/Utilities/Extensions/View+Extensions.swift; sourceTree = "<group>"; };
+		AC716B42011A4548B52CF3EB = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimeInterval+Extensions.swift; path = IroPre/Utilities/Extensions/TimeInterval+Extensions.swift; sourceTree = "<group>"; };
+		24C8F0B44FE0476AAC93851B = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = IroPre/Resources/Assets.xcassets/Assets.xcassets; sourceTree = "<group>"; };
+		6D5EA05933764870BB8B745F = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = IroPre/Resources/Info.plist/Info.plist; sourceTree = "<group>"; };
+		B45A6C3C88114750ABDC2A43 = {isa = PBXFileReference; lastKnownFileType = text.json; name = PuzzlePresets.json; path = IroPre/Data/Presets/PuzzlePresets.json/PuzzlePresets.json; sourceTree = "<group>"; };
+		D0659689BC994C878E6F4F53 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PuzzleValidatorTests.swift; path = IroPreTests/IroPreTests/PuzzleValidatorTests.swift; sourceTree = "<group>"; };
+		0F59F152B2AC4E4E94C4CD06 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PuzzleGeneratorTests.swift; path = IroPreTests/IroPreTests/PuzzleGeneratorTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5F5A3E0ABBAD4E03A73D25FC = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03AA8976DD1B4B28B469869E = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F43DEF0B19FB48EDAA6E9519 /* IroPre.app in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		55E6700E9EFA4F9DA52FC4B8 = {
+			isa = PBXGroup;
+			children = (
+				7B68D171E1DF42E9A59D5DD1 /* IroPre */,
+				FE31BE325C6049D89382A8AA /* IroPreTests */,
+				56B0F080E7534088BBBBCA99 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		56B0F080E7534088BBBBCA99 = {
+			isa = PBXGroup;
+			children = (
+				B205A3F282D34825B6670DEA /* IroPre.app */,
+				357D5B16B4C14ACFAF00239C /* IroPreTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7B68D171E1DF42E9A59D5DD1 = {
+			isa = PBXGroup;
+			children = (
+				3C1DAEDE3BA145E899A4DD17 /* App */,
+				91E49D1E0C3F4A7DABBF24BC /* Core */,
+				BDC4523779184F97A77D46D1 /* Features */,
+				68AD96C69CCF427B84291CD8 /* Data */,
+				1457678A4A5D4C5680437FFA /* Resources */,
+				BD4564FC9D644E14B9F4BC8E /* Utilities */,
+			);
+			name = IroPre;
+			path = IroPre;
+			sourceTree = "<group>";
+		};
+		3C1DAEDE3BA145E899A4DD17 = {
+			isa = PBXGroup;
+			children = (
+				69FFF6748E934CCBBCB3A1E5 /* IroPreApp.swift */,
+				280B2E8661FE40FD985E4BF7 /* ContentView.swift */,
+			);
+			name = App;
+			path = App;
+			sourceTree = "<group>";
+		};
+		91E49D1E0C3F4A7DABBF24BC = {
+			isa = PBXGroup;
+			children = (
+				71C0CCE72C124E218A6A58F1 /* Models */,
+				F58701C1F92D4E5F91335E79 /* Engine */,
+				43092B27D7F9487D959719D7 /* Theme */,
+			);
+			name = Core;
+			path = Core;
+			sourceTree = "<group>";
+		};
+		71C0CCE72C124E218A6A58F1 = {
+			isa = PBXGroup;
+			children = (
+				B1BB3C80335E469FAC3EDC4F /* Cell.swift */,
+				BF738F54A159428B9D500D4B /* Move.swift */,
+				89A47B1C430E48FC889484CB /* Puzzle.swift */,
+				FF85F49E6E7D416D8DFF9C8C /* GameState.swift */,
+				060A68968FC54382BBC8D4E2 /* Achievement.swift */,
+			);
+			name = Models;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F58701C1F92D4E5F91335E79 = {
+			isa = PBXGroup;
+			children = (
+				CE704D9D662E4D3A8D6FC297 /* PuzzleGenerator.swift */,
+				03FE9B6C57014162AECD69E8 /* PuzzleValidator.swift */,
+				DBDDE0D3A0EA46A58EE492E6 /* HintEngine.swift */,
+			);
+			name = Engine;
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		43092B27D7F9487D959719D7 = {
+			isa = PBXGroup;
+			children = (
+				0BB817EF5CED4DED8351AE2D /* ColorPalette.swift */,
+				69EAEE26DEF745B08AAAF086 /* AccessibilityMode.swift */,
+				9CDDC70F75534EAD80692944 /* FontManager.swift */,
+			);
+			name = Theme;
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		BDC4523779184F97A77D46D1 = {
+			isa = PBXGroup;
+			children = (
+				D5A73B8AFCCB43548BFF0032 /* Home */,
+				19E891B878D84D8991BF7870 /* Game */,
+				5CC54BF63E6348CC9A0766B3 /* LevelSelect */,
+				22DE6CA6C8FF4DCDAB3E0ADA /* Tutorial */,
+				F1729EC1D45143CC9C6A9383 /* Achievements */,
+				60C8914812544DA3A2C1302A /* Settings */,
+			);
+			name = Features;
+			path = Features;
+			sourceTree = "<group>";
+		};
+		D5A73B8AFCCB43548BFF0032 = {
+			isa = PBXGroup;
+			children = (
+				83CB1BA3E678412A84800A34 /* HomeView.swift */,
+				E55F659F6CFC48299D7AA537 /* HomeViewModel.swift */,
+			);
+			name = Home;
+			path = Home;
+			sourceTree = "<group>";
+		};
+		19E891B878D84D8991BF7870 = {
+			isa = PBXGroup;
+			children = (
+				F6B7A5B2B48C41FA8551C868 /* GameView.swift */,
+				0C7D8E1DD3604A8DAAEC439E /* GameViewModel.swift */,
+				F9366592B7D3428E950A7242 /* BoardView.swift */,
+				EC95F6E1C722459BB08E33C2 /* PaletteView.swift */,
+				4B4F4E1339AC46C199D1B912 /* PauseOverlayView.swift */,
+			);
+			name = Game;
+			path = Game;
+			sourceTree = "<group>";
+		};
+		5CC54BF63E6348CC9A0766B3 = {
+			isa = PBXGroup;
+			children = (
+				950F0D9547804555A47E4375 /* LevelSelectView.swift */,
+				05605DC6F5E445F7AC373073 /* LevelSelectViewModel.swift */,
+			);
+			name = LevelSelect;
+			path = LevelSelect;
+			sourceTree = "<group>";
+		};
+		22DE6CA6C8FF4DCDAB3E0ADA = {
+			isa = PBXGroup;
+			children = (
+				8706BEA7FEF74F32AB90B17B /* TutorialView.swift */,
+				7F1B0BB217E1481890A9D200 /* TutorialViewModel.swift */,
+			);
+			name = Tutorial;
+			path = Tutorial;
+			sourceTree = "<group>";
+		};
+		F1729EC1D45143CC9C6A9383 = {
+			isa = PBXGroup;
+			children = (
+				FA33ABA0851E4017AE0CD0F0 /* AchievementsView.swift */,
+				2BB9B0DD669D487EAB36CAC3 /* AchievementsViewModel.swift */,
+			);
+			name = Achievements;
+			path = Achievements;
+			sourceTree = "<group>";
+		};
+		60C8914812544DA3A2C1302A = {
+			isa = PBXGroup;
+			children = (
+				4129237B9D19483B937329E1 /* SettingsView.swift */,
+				DC7B1CC3CB344B3EBA9747F9 /* SettingsViewModel.swift */,
+			);
+			name = Settings;
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		68AD96C69CCF427B84291CD8 = {
+			isa = PBXGroup;
+			children = (
+				249FF74AA2224ACEB695BE1E /* Storage */,
+				5BC370BD2FFA4C0AA494ECB5 /* Repository */,
+				42274829CCF54540917C0C2B /* Presets */,
+			);
+			name = Data;
+			path = Data;
+			sourceTree = "<group>";
+		};
+		249FF74AA2224ACEB695BE1E = {
+			isa = PBXGroup;
+			children = (
+				33E3CE521CFB4603AED1147A /* GameProgress.swift */,
+				0913715907744178B0B0F87A /* ClearRecord.swift */,
+				DDEFEB8B42044346BD5EEDFF /* AchievementRecord.swift */,
+				360C26876FD34F989DA0FCE6 /* UserSettings.swift */,
+				B5D6C50756E14F20A0870616 /* SwiftDataManager.swift */,
+			);
+			name = Storage;
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		5BC370BD2FFA4C0AA494ECB5 = {
+			isa = PBXGroup;
+			children = (
+				F40FC94E22D047B89470EDDE /* GameRepository.swift */,
+				9E02A9D949EE4AE1A5A8C6D9 /* AchievementRepository.swift */,
+			);
+			name = Repository;
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		42274829CCF54540917C0C2B = {
+			isa = PBXGroup;
+			children = (
+				B45A6C3C88114750ABDC2A43 /* PuzzlePresets.json */,
+			);
+			name = Presets;
+			path = Presets;
+			sourceTree = "<group>";
+		};
+		1457678A4A5D4C5680437FFA = {
+			isa = PBXGroup;
+			children = (
+				24C8F0B44FE0476AAC93851B /* Assets.xcassets */,
+				6D5EA05933764870BB8B745F /* Info.plist */,
+			);
+			name = Resources;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		BD4564FC9D644E14B9F4BC8E = {
+			isa = PBXGroup;
+			children = (
+				EB581AF08ECE4E99888832E4 /* Constants.swift */,
+				5C769D55B8B04D0E87EC8ABE /* Extensions */,
+			);
+			name = Utilities;
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		5C769D55B8B04D0E87EC8ABE = {
+			isa = PBXGroup;
+			children = (
+				48083B9B438542D0B57C2E69 /* View+Extensions.swift */,
+				AC716B42011A4548B52CF3EB /* TimeInterval+Extensions.swift */,
+			);
+			name = Extensions;
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FE31BE325C6049D89382A8AA = {
+			isa = PBXGroup;
+			children = (
+				D0659689BC994C878E6F4F53 /* PuzzleValidatorTests.swift */,
+				0F59F152B2AC4E4E94C4CD06 /* PuzzleGeneratorTests.swift */,
+			);
+			name = IroPreTests;
+			path = IroPreTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0A184610BE7C4FE0958CAA5B = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FE7AA85B388641E18E72E692;
+			buildPhases = (
+				F73C3B7283FC426D883C677B /* Sources */,
+				5F5A3E0ABBAD4E03A73D25FC /* Frameworks */,
+				7F42FE976BCD4994AF4FC616 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IroPre;
+			packageProductDependencies = (
+			);
+			productName = IroPre;
+			productReference = B205A3F282D34825B6670DEA;
+			productType = "com.apple.product-type.application";
+		};
+		3D64F727A0DE40B888B3990E = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 176DFDF698A148A094339F5B;
+			buildPhases = (
+				FD2671BAB93746F0853205F4 /* Sources */,
+				03AA8976DD1B4B28B469869E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				59EAAE6BD7F04FF79626592A /* PBXTargetDependency */,
+			);
+			name = IroPreTests;
+			productName = IroPreTests;
+			productReference = 357D5B16B4C14ACFAF00239C;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FA2FACFBB6E948249037EF36 = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					0A184610BE7C4FE0958CAA5B = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					3D64F727A0DE40B888B3990E = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 0A184610BE7C4FE0958CAA5B;
+					};
+				};
+			};
+			buildConfigurationList = 9EE75650D6FC4FAA8EBBFAE7;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = ja;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				ja,
+				Base,
+			);
+			mainGroup = 55E6700E9EFA4F9DA52FC4B8;
+			productRefGroup = 56B0F080E7534088BBBBCA99;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0A184610BE7C4FE0958CAA5B /* IroPre */,
+				3D64F727A0DE40B888B3990E /* IroPreTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7F42FE976BCD4994AF4FC616 = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4939F62A5E7943C48F4B3B55 /* Assets.xcassets in Resources */,
+				7A1FB14F4BDE4CECADD19478 /* PuzzlePresets.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F73C3B7283FC426D883C677B = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED7C9A4836914CE9A26F14FA /* IroPreApp.swift in Sources */,
+				B983ECAD310B4D0CA007F1F2 /* ContentView.swift in Sources */,
+				F56FFD8CDC2147DFA503EE23 /* Cell.swift in Sources */,
+				092FBDF4F7AB41EBBCE18CDF /* Move.swift in Sources */,
+				CBC5BFA693C34B24A65C9056 /* Puzzle.swift in Sources */,
+				5AE481735DCD4C1AA041E970 /* GameState.swift in Sources */,
+				57DA5EF0235146C5BB6A6C6F /* Achievement.swift in Sources */,
+				CE39872B19244AC59549DB4B /* PuzzleGenerator.swift in Sources */,
+				033EED1F02AC4CE2AE27418B /* PuzzleValidator.swift in Sources */,
+				866840BFE7474B5A88092C12 /* HintEngine.swift in Sources */,
+				801308ED427047E6991FA486 /* ColorPalette.swift in Sources */,
+				7EA04D849B9D4AA284AC264A /* AccessibilityMode.swift in Sources */,
+				4455A67EFE84460596AA0349 /* FontManager.swift in Sources */,
+				61C8B178B29B4F16803A74B4 /* HomeView.swift in Sources */,
+				2F9B79016CFC4860BA8927CF /* HomeViewModel.swift in Sources */,
+				3140E97189DC4C8C8CB97276 /* GameView.swift in Sources */,
+				0F1A02F34B0B4DFC8113B837 /* GameViewModel.swift in Sources */,
+				3693A608A9EE4024B8040092 /* BoardView.swift in Sources */,
+				B62FD9E984D6428D9F671975 /* PaletteView.swift in Sources */,
+				34387F3746934FECADA92710 /* PauseOverlayView.swift in Sources */,
+				E91CC72529FC47D5B596B370 /* LevelSelectView.swift in Sources */,
+				B2D81F798AEE41D083C16B65 /* LevelSelectViewModel.swift in Sources */,
+				76B76F349B82400FB6372E69 /* TutorialView.swift in Sources */,
+				6D35599C45274539BB401D9F /* TutorialViewModel.swift in Sources */,
+				CB05815FCF47430A8B460F61 /* AchievementsView.swift in Sources */,
+				18180A1235444225BDF5FC72 /* AchievementsViewModel.swift in Sources */,
+				C196FCEFB4CF415DA5839C11 /* SettingsView.swift in Sources */,
+				A20E1790A3904412B23BBA11 /* SettingsViewModel.swift in Sources */,
+				4CDC8D0B13DA477FBFCBA970 /* GameProgress.swift in Sources */,
+				20F8BF4C578B4DEAB63D8FB0 /* ClearRecord.swift in Sources */,
+				AA1476BDA4D44BD699D84D2E /* AchievementRecord.swift in Sources */,
+				C2BACDAC075B4680B6F68D1B /* UserSettings.swift in Sources */,
+				B467781F9448453C98CA44D8 /* SwiftDataManager.swift in Sources */,
+				C430A982E17D4B788ECB415B /* GameRepository.swift in Sources */,
+				02CED299EE42444C9AAFD853 /* AchievementRepository.swift in Sources */,
+				43C684F87125495FA4EB7E5C /* Constants.swift in Sources */,
+				C0DCEC11DE2B462AB1C4F3C0 /* View+Extensions.swift in Sources */,
+				6744B11BC9BC44D1B5DB5039 /* TimeInterval+Extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD2671BAB93746F0853205F4 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBE6FBDB9C434BA08878B7DA /* PuzzleValidatorTests.swift in Sources */,
+				1ADA4CE6FF094343B05710D4 /* PuzzleGeneratorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		59EAAE6BD7F04FF79626592A = {
+			isa = PBXTargetDependency;
+			target = 0A184610BE7C4FE0958CAA5B;
+			targetProxy = B83B7CA444944EF09CA6DD19;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXContainerItemProxy section */
+		B83B7CA444944EF09CA6DD19 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA2FACFBB6E948249037EF36;
+			proxyType = 1;
+			remoteGlobalIDString = 0A184610BE7C4FE0958CAA5B;
+			remoteInfo = IroPre;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin XCBuildConfiguration section */
+		C744F4FA97E94F85AAF1585A = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSET_CATALOG_COMPILER_OPTIMIZATION = space;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_CYCLE = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("DEBUG=1", "$(inherited)");
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		0D3DA80CB4AB4EF7A1A53B16 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSET_CATALOG_COMPILER_OPTIMIZATION = space;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		20C287111A70442BA7841067 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSTECATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = IroPre/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.iropre;
+				PRODUCT_NAME = IroPre;
+				SUPPORTS_MAC_DESIGNED_FOR_IPAD = NO;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		7A0DC2B2F8A045AF8E1AB575 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = IroPre/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.iropre;
+				PRODUCT_NAME = IroPre;
+				SUPPORTS_MAC_DESIGNED_FOR_IPAD = NO;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		C61FE0FB3E39489C82C2ACC0 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.iropre.tests;
+				PRODUCT_NAME = IroPreTests;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IroPre.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/IroPre";
+			};
+			name = Debug;
+		};
+		C383524FFE324FBB80AE00D3 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.iropre.tests;
+				PRODUCT_NAME = IroPreTests;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IroPre.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/IroPre";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9EE75650D6FC4FAA8EBBFAE7 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C744F4FA97E94F85AAF1585A /* Debug */,
+				0D3DA80CB4AB4EF7A1A53B16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FE7AA85B388641E18E72E692 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20C287111A70442BA7841067 /* Debug */,
+				7A0DC2B2F8A045AF8E1AB575 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		176DFDF698A148A094339F5B = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C61FE0FB3E39489C82C2ACC0 /* Debug */,
+				C383524FFE324FBB80AE00D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = FA2FACFBB6E948249037EF36;
+}
