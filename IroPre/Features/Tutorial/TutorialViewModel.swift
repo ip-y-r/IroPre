@@ -20,6 +20,7 @@ final class TutorialViewModel {
         currentStep -= 1
     }
 
+    @MainActor
     func complete() {
         let context = SwiftDataManager.shared.container.mainContext
         let descriptor = FetchDescriptor<UserSettings>()
