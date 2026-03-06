@@ -5,12 +5,12 @@ import SwiftData
 // MARK: - Protocol
 
 protocol GameRepositoryProtocol: Sendable {
-    func saveProgress(_ state: GameState) async throws
-    func loadProgress(puzzleId: String) async throws -> GameProgress?
-    func deleteProgress(puzzleId: String) async throws
-    func saveClearRecord(_ record: ClearRecord) async throws
-    func loadClearRecord(puzzleId: String) async throws -> ClearRecord?
-    func loadAllClearRecords() async throws -> [ClearRecord]
+    @MainActor func saveProgress(_ state: GameState) async throws
+    @MainActor func loadProgress(puzzleId: String) async throws -> GameProgress?
+    @MainActor func deleteProgress(puzzleId: String) async throws
+    @MainActor func saveClearRecord(_ record: ClearRecord) async throws
+    @MainActor func loadClearRecord(puzzleId: String) async throws -> ClearRecord?
+    @MainActor func loadAllClearRecords() async throws -> [ClearRecord]
 }
 
 // MARK: - Implementation

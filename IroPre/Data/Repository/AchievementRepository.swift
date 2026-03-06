@@ -5,9 +5,9 @@ import SwiftData
 // MARK: - Protocol
 
 protocol AchievementRepositoryProtocol: Sendable {
-    func loadAll() async throws -> [AchievementRecord]
-    func updateProgress(achievementId: String, progress: Double) async throws
-    func unlock(achievementId: String) async throws
+    @MainActor func loadAll() async throws -> [AchievementRecord]
+    @MainActor func updateProgress(achievementId: String, progress: Double) async throws
+    @MainActor func unlock(achievementId: String) async throws
 }
 
 // MARK: - Implementation
