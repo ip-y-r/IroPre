@@ -1,5 +1,6 @@
 // MARK: - チュートリアル画面 ViewModel
 import Foundation
+import SwiftData
 
 @Observable
 final class TutorialViewModel {
@@ -20,6 +21,11 @@ final class TutorialViewModel {
     }
 
     func complete() {
-        // TODO: Phase 3 で UserSettings.hasCompletedTutorial を更新
+        let context = SwiftDataManager.shared.container.mainContext
+        let descriptor = FetchDescriptor<UserSettings>()
+        if let settings = try? context.fetch(descriptor).first {
+            settings.hasCompletedTutorial = true
+            try? context.save()
+        }
     }
 }

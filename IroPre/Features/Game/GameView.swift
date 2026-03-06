@@ -7,6 +7,7 @@ struct GameView: View {
 
     @State private var viewModel: GameViewModel
     @Environment(\.dismiss) private var dismiss
+    @Environment(SettingsViewModel.self) private var settings
 
     init(level: Int, gridSize: GridSize) {
         self.level = level
@@ -26,14 +27,21 @@ struct GameView: View {
 
                 Spacer()
 
-                // 盤面
+                // 盤面（ポーズ中は非表示）
                 if let gameState = viewModel.gameState {
-                    BoardView(
-                        gameState: gameState,
-                        selectedPosition: viewModel.selectedCellPosition,
-                        onCellTap: { row, col in viewModel.tapCell(row: row, col: col) }
-                    )
-                    .padding(.horizontal, 16)
+                    if !viewModel.isPaused {
+                        BoardView(
+                            gameState: gameState,
+                            isDarkMode: settings.isDarkMode,
+                            selectedPosition: viewModel.selectedCellPosition,
+                            onCellTap: { row, col in viewModel.tapCell(row: row, col: col) }
+                        )
+                        .padding(.horizontal, 16)
+                    } else {
+                        Color.clear
+                            .aspectRatio(1, contentMode: .fit)
+                            .padding(.horizontal, 16)
+                    }
 
                     Spacer()
 
@@ -42,14 +50,16 @@ struct GameView: View {
                         canUndo: !(gameState.moveHistory.isEmpty),
                         onUndo: { viewModel.undo() },
                         onErase: { viewModel.eraseSelectedCell() },
-                        onHint: { viewModel.requestHint() }
+                        onCellHint: { viewModel.requestHint() },
+                        onErrorCheck: { viewModel.requestErrorCheck() },
+                        onBlockHint: { viewModel.requestBlockHint() }
                     )
 
                     // カラーパレット
                     PaletteView(
                         gridSize: gridSize,
                         selectedColorIndex: gameState.selectedColorIndex,
-                        isDarkMode: false,
+                        isDarkMode: settings.isDarkMode,
                         onColorSelected: { index in viewModel.selectColor(index) }
                     )
                     .padding(.horizontal, 16)
@@ -132,7 +142,9 @@ private struct GameToolbarView: View {
     let canUndo: Bool
     let onUndo: () -> Void
     let onErase: () -> Void
-    let onHint: () -> Void
+    let onCellHint: () -> Void
+    let onErrorCheck: () -> Void
+    let onBlockHint: () -> Void
 
     var body: some View {
         HStack(spacing: 40) {
@@ -155,7 +167,17 @@ private struct GameToolbarView: View {
                 }
             }
 
-            Button(action: onHint) {
+            Menu {
+                Button(action: onCellHint) {
+                    Label("マスヒント", systemImage: "square.dashed")
+                }
+                Button(action: onErrorCheck) {
+                    Label("エラーチェック", systemImage: "exclamationmark.triangle.fill")
+                }
+                Button(action: onBlockHint) {
+                    Label("ブロックヒント", systemImage: "rectangle.split.2x2.fill")
+                }
+            } label: {
                 VStack(spacing: 4) {
                     Image(systemName: "lightbulb.fill")
                         .font(.system(size: 24))
@@ -243,5 +265,6 @@ private struct GameClearOverlay: View {
 #Preview {
     NavigationStack {
         GameView(level: 1, gridSize: .small)
+            .environment(SettingsViewModel())
     }
 }

@@ -19,6 +19,7 @@ final class GameState {
     var elapsedTime: TimeInterval
     var hintsUsed: Int
     var errorCheckCount: Int
+    var blockHintsUsed: Int
 
     // MARK: ヒント上限（PRD 4.3）
     static let maxHints = 3
@@ -34,6 +35,7 @@ final class GameState {
         self.elapsedTime = 0
         self.hintsUsed = 0
         self.errorCheckCount = 0
+        self.blockHintsUsed = 0
     }
 
     // MARK: - セルへの色配置
@@ -96,6 +98,7 @@ final class GameState {
         selectedColorIndex = nil
         hintsUsed = 0
         errorCheckCount = 0
+        blockHintsUsed = 0
     }
 
     // MARK: - 盤面取得

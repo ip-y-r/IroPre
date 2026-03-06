@@ -125,6 +125,44 @@ final class GameViewModel {
     }
 
     @MainActor
+    func requestErrorCheck() {
+        guard let state = gameState else { return }
+        let result = hintEngine.provideHint(type: .errorCheck, state: state)
+        switch result {
+        case let .errorPositions(positions):
+            state.errorCheckCount += 1
+            errorPositions = positions
+            for pos in positions {
+                state.cells[pos.row][pos.col].isError = true
+            }
+        case .limitReached:
+            break
+        default:
+            break
+        }
+    }
+
+    @MainActor
+    func requestBlockHint() {
+        guard let state = gameState else { return }
+        guard state.blockHintsUsed < GameState.maxBlockHints else { return }
+        let gridSize = state.puzzle.gridSize
+        let blockRow = Int.random(in: 0..<(gridSize.rawValue / gridSize.blockRows))
+        let blockCol = Int.random(in: 0..<(gridSize.rawValue / gridSize.blockCols))
+        let result = hintEngine.provideHint(type: .blockHint(blockRow: blockRow, blockCol: blockCol), state: state)
+        switch result {
+        case let .blockHint(row, col, colorIndex):
+            state.cells[row][col].colorIndex = colorIndex
+            state.blockHintsUsed += 1
+            checkCompletion()
+        case .alreadyCorrect, .limitReached:
+            break
+        default:
+            break
+        }
+    }
+
+    @MainActor
     func pause() {
         gameState?.phase = .paused
         isPaused = true

@@ -19,6 +19,7 @@ struct AchievementsView: View {
         }
         .navigationTitle("実績")
         .navigationBarTitleDisplayMode(.large)
+        .task { await viewModel.load() }
     }
 }
 

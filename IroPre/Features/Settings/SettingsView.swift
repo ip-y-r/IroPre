@@ -2,18 +2,16 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @State private var viewModel = SettingsViewModel()
+    @Environment(SettingsViewModel.self) private var viewModel
 
     var body: some View {
+        @Bindable var vm = viewModel
         Form {
             // 表示設定
             Section("表示") {
-                Toggle("ダークモード", isOn: $viewModel.isDarkMode)
-                    .onChange(of: viewModel.isDarkMode) { _, newValue in
-                        viewModel.updateDarkMode(newValue)
-                    }
+                Toggle("ダークモード", isOn: $vm.isDarkMode)
 
-                Picker("アクセシビリティモード", selection: $viewModel.accessibilityMode) {
+                Picker("アクセシビリティモード", selection: $vm.accessibilityMode) {
                     ForEach(AccessibilityDisplayMode.allCases, id: \.self) { mode in
                         Text(mode.displayName).tag(mode)
                     }
@@ -22,14 +20,14 @@ struct SettingsView: View {
 
             // ゲーム設定
             Section("ゲーム") {
-                Toggle("タイマーを表示", isOn: $viewModel.isTimerVisible)
-                Toggle("エラーチェックを有効化", isOn: $viewModel.isErrorCheckEnabled)
+                Toggle("タイマーを表示", isOn: $vm.isTimerVisible)
+                Toggle("エラーチェックを有効化", isOn: $vm.isErrorCheckEnabled)
             }
 
             // サウンド・ハプティクス
             Section("サウンド・振動") {
-                Toggle("サウンドエフェクト", isOn: $viewModel.isSoundEnabled)
-                Toggle("ハプティクス", isOn: $viewModel.isHapticsEnabled)
+                Toggle("サウンドエフェクト", isOn: $vm.isSoundEnabled)
+                Toggle("ハプティクス", isOn: $vm.isHapticsEnabled)
             }
 
             // チュートリアル再表示
@@ -51,6 +49,12 @@ struct SettingsView: View {
         }
         .navigationTitle("設定")
         .navigationBarTitleDisplayMode(.large)
+        .onChange(of: viewModel.isDarkMode) { viewModel.persist() }
+        .onChange(of: viewModel.accessibilityMode) { viewModel.persist() }
+        .onChange(of: viewModel.isTimerVisible) { viewModel.persist() }
+        .onChange(of: viewModel.isErrorCheckEnabled) { viewModel.persist() }
+        .onChange(of: viewModel.isSoundEnabled) { viewModel.persist() }
+        .onChange(of: viewModel.isHapticsEnabled) { viewModel.persist() }
     }
 }
 
@@ -67,5 +71,6 @@ private extension Bundle {
 #Preview {
     NavigationStack {
         SettingsView()
+            .environment(SettingsViewModel())
     }
 }

@@ -3,6 +3,7 @@ import SwiftUI
 
 struct BoardView: View {
     let gameState: GameState
+    var isDarkMode: Bool = false
     var selectedPosition: CellPosition? = nil
     var onCellTap: ((Int, Int) -> Void)?
 
@@ -22,7 +23,8 @@ struct BoardView: View {
                                 CellView(
                                     cell: gameState.cells[row][col],
                                     gridSize: gridSize,
-                                    isSelected: selectedPosition == CellPosition(row: row, col: col)
+                                    isSelected: selectedPosition == CellPosition(row: row, col: col),
+                                    isDarkMode: isDarkMode
                                 )
                                 .frame(width: cellSize, height: cellSize)
                                 .onTapGesture {
@@ -52,6 +54,7 @@ struct CellView: View {
     let cell: Cell
     let gridSize: GridSize
     let isSelected: Bool
+    let isDarkMode: Bool
 
     var body: some View {
         ZStack {
@@ -103,7 +106,7 @@ struct CellView: View {
         guard let puzzleColor = ColorPalette.color(for: cell.colorIndex) else {
             return .clear
         }
-        return puzzleColor.light  // TODO: Phase 3 でダークモード対応
+        return puzzleColor.color(isDarkMode: isDarkMode)
     }
 }
 
@@ -159,6 +162,7 @@ private struct BlockBorderView: View {
     )
     BoardView(
         gameState: GameState(puzzle: puzzle),
+        isDarkMode: false,
         selectedPosition: CellPosition(row: 1, col: 1)
     )
     .frame(width: 300, height: 300)
